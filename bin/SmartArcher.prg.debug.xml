@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<debugInfo>
+<pcToLineNum>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityView.mc" lineNum="5" pc="268435456" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityView.mc" lineNum="6" pc="268435460" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityView.mc" lineNum="10" pc="268435479" symbol="onLayout"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityView.mc" lineNum="11" pc="268435483" symbol="onLayout"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityView.mc" lineNum="17" pc="268435521" symbol="onShow"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityView.mc" lineNum="21" pc="268435526" symbol="onUpdate"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityView.mc" lineNum="23" pc="268435530" symbol="onUpdate"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityView.mc" lineNum="29" pc="268435551" symbol="onHide"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityDelegate.mc" lineNum="5" pc="268435556" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityDelegate.mc" lineNum="6" pc="268435560" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityDelegate.mc" lineNum="9" pc="268435579" symbol="onMenu"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityDelegate.mc" lineNum="10" pc="268435583" symbol="onMenu"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityDelegate.mc" lineNum="11" pc="268435667" symbol="onMenu"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityApp.mc" lineNum="6" pc="268435671" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityApp.mc" lineNum="7" pc="268435675" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityApp.mc" lineNum="11" pc="268435694" symbol="onStart"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityApp.mc" lineNum="15" pc="268435699" symbol="onStop"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityApp.mc" lineNum="19" pc="268435704" symbol="getInitialView"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityApp.mc" lineNum="20" pc="268435708" symbol="getInitialView"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityMenuDelegate.mc" lineNum="6" pc="268435776" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityMenuDelegate.mc" lineNum="7" pc="268435780" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityMenuDelegate.mc" lineNum="10" pc="268435799" symbol="onMenuItem"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityMenuDelegate.mc" lineNum="11" pc="268435803" symbol="onMenuItem"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityMenuDelegate.mc" lineNum="12" pc="268435814" symbol="onMenuItem"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityMenuDelegate.mc" lineNum="13" pc="268435838" symbol="onMenuItem"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityMenuDelegate.mc" lineNum="14" pc="268435849" symbol="onMenuItem"/>
+<entry filename="Rez" lineNum="15" pc="268435874" symbol="initialize"/>
+<entry filename="Rez" lineNum="16" pc="268435878" symbol="initialize"/>
+<entry filename="Rez" lineNum="17" pc="268435896" symbol="initialize"/>
+<entry filename="Rez" lineNum="18" pc="268435948" symbol="initialize"/>
+<entry filename="Rez" lineNum="34" pc="268436001" symbol="MainLayout"/>
+<entry filename="Rez" lineNum="38" pc="268436013" symbol="MainLayout"/>
+<entry filename="Rez" lineNum="39" pc="268436176" symbol="MainLayout"/>
+<entry filename="Rez" lineNum="40" pc="268436201" symbol="MainLayout"/>
+<entry filename="Rez" lineNum="41" pc="268436253" symbol="MainLayout"/>
+<entry filename="Rez" lineNum="42" pc="268436369" symbol="MainLayout"/>
+<entry filename="Rez" lineNum="45" pc="268436421" symbol="MainLayout"/>
+</pcToLineNum>
+<symbolTable>
+<entry id="8389124" method="true" symbol="onUpdate"/>
+<entry id="8389349" symbol="justification"/>
+<entry field="true" id="8388611" module="true" symbol="Toybox"/>
+<entry id="17" object="true" symbol="MainMenu"/>
+<entry id="9" object="true" symbol="ArcheryActivityView"/>
+<entry id="8388770" module="true" object="true" symbol="Strings"/>
+<entry id="8389280" method="true" symbol="getInitialView"/>
+<entry id="12" object="true" symbol="ArcheryActivityMenuDelegate"/>
+<entry id="18" method="true" symbol="MainLayout"/>
+<entry id="8388769" module="true" object="true" symbol="Rez"/>
+<entry id="8389123" method="true" symbol="onShow"/>
+<entry id="8388702" method="true" symbol="initialize"/>
+<entry field="true" id="22" symbol="AppName"/>
+<entry id="8389080" method="true" symbol="onMenu"/>
+<entry id="11" object="true" symbol="ArcheryActivityApp"/>
+<entry id="24" symbol="item_2"/>
+<entry id="23" symbol="item_1"/>
+<entry field="true" id="16" symbol="LauncherIcon"/>
+<entry field="true" id="20" symbol="menu_label_2"/>
+<entry field="true" id="19" symbol="menu_label_1"/>
+<entry id="8389281" method="true" symbol="onStop"/>
+<entry field="true" id="8389065" symbol="locY"/>
+<entry field="true" id="8389064" symbol="locX"/>
+<entry id="8388771" module="true" object="true" symbol="Drawables"/>
+<entry id="8389122" method="true" symbol="onLayout"/>
+<entry id="8389279" method="true" symbol="onStart"/>
+<entry field="true" id="15" symbol="id_monkey"/>
+<entry id="8389348" symbol="font"/>
+<entry id="8389347" symbol="color"/>
+<entry id="8389109" method="true" symbol="onMenuItem"/>
+<entry id="14" module="true" symbol="Layouts"/>
+<entry field="true" id="21" symbol="prompt"/>
+<entry id="8389125" method="true" symbol="onHide"/>
+<entry id="8389345" symbol="rezId"/>
+<entry id="8390088" module="true" object="true" symbol="JsonData"/>
+<entry id="8389346" symbol="text"/>
+<entry field="true" id="8389063" symbol="identifier"/>
+<entry id="10" object="true" symbol="ArcheryActivityDelegate"/>
+<entry id="13" module="true" symbol="Menus"/>
+<entry id="8388772" module="true" object="true" symbol="Fonts"/>
+</symbolTable>
+<localVars>
+<entry endPc="268435521" name="dc" stackId="1" startPc="268435479"/>
+<entry endPc="268435551" name="dc" stackId="1" startPc="268435526"/>
+<entry endPc="268435699" name="state" stackId="1" startPc="268435694"/>
+<entry endPc="268435704" name="state" stackId="1" startPc="268435699"/>
+<entry endPc="268435874" name="item" stackId="1" startPc="268435799"/>
+<entry endPc="268436448" name="rez_cmp_local_bitmap_MYFF7O46ZM" stackId="2" startPc="268436013"/>
+<entry endPc="268436448" name="rez_cmp_local_bitmap_MYFF7O46ZM_fontHeight" stackId="3" startPc="268436013"/>
+<entry endPc="268436448" name="rez_cmp_local_bitmap_id_monkey" stackId="4" startPc="268436013"/>
+<entry endPc="268436449" name="dc" stackId="1" startPc="268436001"/>
+</localVars>
+<annotations/>
+<functions>
+<functionEntry accessMode="public" name="initialize" parent="ArcheryActivityView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onLayout" parent="ArcheryActivityView">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onShow" parent="ArcheryActivityView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onUpdate" parent="ArcheryActivityView">
+<param id="dc"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onHide" parent="ArcheryActivityView">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="ArcheryActivityDelegate">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onMenu" parent="ArcheryActivityDelegate">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="ArcheryActivityApp">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onStart" parent="ArcheryActivityApp">
+<param id="state"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onStop" parent="ArcheryActivityApp">
+<param id="state"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="getInitialView" parent="ArcheryActivityApp">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="ArcheryActivityMenuDelegate">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onMenuItem" parent="ArcheryActivityMenuDelegate">
+<param id="item"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="MainMenu">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="MainLayout" parent="Layouts">
+<param id="dc"/>
+<documentation><![CDATA[<div class="description"> Draw the layout<br/> param The context<br/></div>]]></documentation>
+</functionEntry>
+</functions>
+<dataEntryOffsetMappings>
+<dataEntry offset="87" parentId="" symbolId="globals" type="module"/>
+<dataEntry offset="198" parentId="globals" symbolId="Rez" type="module"/>
+<dataEntry offset="277" parentId="Rez" symbolId="Drawables" type="module"/>
+<dataEntry offset="324" parentId="Rez" symbolId="Menus" type="module"/>
+<dataEntry offset="363" parentId="Menus" symbolId="MainMenu" type="class"/>
+<dataEntry offset="410" parentId="Rez" symbolId="Fonts" type="module"/>
+<dataEntry offset="441" parentId="Rez" symbolId="JsonData" type="module"/>
+<dataEntry offset="472" parentId="Rez" symbolId="Layouts" type="module"/>
+<dataEntry offset="511" parentId="Rez" symbolId="Strings" type="module"/>
+<dataEntry offset="574" parentId="globals" symbolId="ArcheryActivityDelegate" type="class"/>
+<dataEntry offset="629" parentId="globals" symbolId="ArcheryActivityMenuDelegate" type="class"/>
+<dataEntry offset="684" parentId="globals" symbolId="ArcheryActivityApp" type="class"/>
+<dataEntry offset="755" parentId="globals" symbolId="ArcheryActivityView" type="class"/>
+</dataEntryOffsetMappings>
+</debugInfo>
