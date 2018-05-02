@@ -87,9 +87,9 @@
 <entry endPc="268435699" name="state" stackId="1" startPc="268435694"/>
 <entry endPc="268435704" name="state" stackId="1" startPc="268435699"/>
 <entry endPc="268435874" name="item" stackId="1" startPc="268435799"/>
-<entry endPc="268436448" name="rez_cmp_local_bitmap_MYFF7O46ZM" stackId="2" startPc="268436013"/>
-<entry endPc="268436448" name="rez_cmp_local_bitmap_MYFF7O46ZM_fontHeight" stackId="3" startPc="268436013"/>
+<entry endPc="268436448" name="rez_cmp_local_bitmap_IPCRTVJ23T" stackId="2" startPc="268436013"/>
 <entry endPc="268436448" name="rez_cmp_local_bitmap_id_monkey" stackId="4" startPc="268436013"/>
+<entry endPc="268436448" name="rez_cmp_local_bitmap_IPCRTVJ23T_fontHeight" stackId="3" startPc="268436013"/>
 <entry endPc="268436449" name="dc" stackId="1" startPc="268436001"/>
 </localVars>
 <annotations/>
