@@ -27,59 +27,175 @@
 <entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityMenuDelegate.mc" lineNum="12" pc="268435814" symbol="onMenuItem"/>
 <entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityMenuDelegate.mc" lineNum="13" pc="268435838" symbol="onMenuItem"/>
 <entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ArcheryActivityMenuDelegate.mc" lineNum="14" pc="268435849" symbol="onMenuItem"/>
-<entry filename="Rez" lineNum="15" pc="268435874" symbol="initialize"/>
-<entry filename="Rez" lineNum="16" pc="268435878" symbol="initialize"/>
-<entry filename="Rez" lineNum="17" pc="268435896" symbol="initialize"/>
-<entry filename="Rez" lineNum="18" pc="268435948" symbol="initialize"/>
-<entry filename="Rez" lineNum="34" pc="268436001" symbol="MainLayout"/>
-<entry filename="Rez" lineNum="38" pc="268436013" symbol="MainLayout"/>
-<entry filename="Rez" lineNum="39" pc="268436176" symbol="MainLayout"/>
-<entry filename="Rez" lineNum="40" pc="268436201" symbol="MainLayout"/>
-<entry filename="Rez" lineNum="41" pc="268436253" symbol="MainLayout"/>
-<entry filename="Rez" lineNum="42" pc="268436369" symbol="MainLayout"/>
-<entry filename="Rez" lineNum="45" pc="268436421" symbol="MainLayout"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="54" pc="268435874" symbol="min"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="55" pc="268435878" symbol="min"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="56" pc="268435886" symbol="min"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="59" pc="268435892" symbol="min"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="64" pc="268435896" symbol="max"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="65" pc="268435900" symbol="max"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="66" pc="268435908" symbol="max"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="69" pc="268435914" symbol="max"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="74" pc="268435918" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="76" pc="268435922" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="77" pc="268435996" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="78" pc="268435996" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="79" pc="268436032" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="80" pc="268436082" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="83" pc="268436170" symbol="initialize"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="88" pc="268436210" symbol="accel_callback"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="89" pc="268436214" symbol="accel_callback"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="90" pc="268436253" symbol="accel_callback"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="91" pc="268436275" symbol="accel_callback"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="92" pc="268436297" symbol="accel_callback"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="96" pc="268436310" symbol="onStart"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="98" pc="268436314" symbol="onStart"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="99" pc="268436358" symbol="onStart"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="100" pc="268436358" symbol="onStart"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="101" pc="268436392" symbol="onStart"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="104" pc="268436420" symbol="onStart"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="109" pc="268436460" symbol="onStop"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="110" pc="268436464" symbol="onStop"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="111" pc="268436480" symbol="onStop"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="115" pc="268436499" symbol="getCount"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="116" pc="268436503" symbol="getCount"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="120" pc="268436513" symbol="getSamples"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="121" pc="268436517" symbol="getSamples"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="125" pc="268436542" symbol="getPeriod"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="126" pc="268436546" symbol="getPeriod"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="130" pc="268436571" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="131" pc="268436575" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="132" pc="268436582" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="133" pc="268436589" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="134" pc="268436596" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="136" pc="268436603" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="138" pc="268436633" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="139" pc="268436646" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="140" pc="268436659" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="142" pc="268436672" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="143" pc="268436689" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="147" pc="268436711" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="149" pc="268436810" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="152" pc="268436829" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="153" pc="268436849" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="154" pc="268436865" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="158" pc="268436881" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="161" pc="268436894" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="162" pc="268436942" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="164" pc="268436990" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="165" pc="268437038" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="168" pc="268437086" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="171" pc="268437201" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="174" pc="268437220" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="177" pc="268437236" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="178" pc="268437249" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="179" pc="268437262" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="180" pc="268437275" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="183" pc="268437288" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="184" pc="268437301" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="188" pc="268437317" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="189" pc="268437333" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="192" pc="268437343" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="193" pc="268437359" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="196" pc="268437369" symbol="onAccelData"/>
+<entry filename="E:\\Sync\\SyncdWorkingFiles\\Projects\\GarminArchery\\SmartArcher\\.\\source\\ShotCounterProcess.mc" lineNum="198" pc="268437392" symbol="onAccelData"/>
+<entry filename="Rez" lineNum="15" pc="268437409" symbol="initialize"/>
+<entry filename="Rez" lineNum="16" pc="268437413" symbol="initialize"/>
+<entry filename="Rez" lineNum="17" pc="268437431" symbol="initialize"/>
+<entry filename="Rez" lineNum="18" pc="268437483" symbol="initialize"/>
+<entry filename="Rez" lineNum="34" pc="268437536" symbol="MainLayout"/>
+<entry filename="Rez" lineNum="38" pc="268437548" symbol="MainLayout"/>
+<entry filename="Rez" lineNum="39" pc="268437711" symbol="MainLayout"/>
+<entry filename="Rez" lineNum="40" pc="268437736" symbol="MainLayout"/>
+<entry filename="Rez" lineNum="41" pc="268437788" symbol="MainLayout"/>
+<entry filename="Rez" lineNum="42" pc="268437904" symbol="MainLayout"/>
+<entry filename="Rez" lineNum="45" pc="268437956" symbol="MainLayout"/>
 </pcToLineNum>
 <symbolTable>
+<entry id="8388644" module="true" symbol="System"/>
 <entry id="8389124" method="true" symbol="onUpdate"/>
 <entry id="8389349" symbol="justification"/>
 <entry field="true" id="8388611" module="true" symbol="Toybox"/>
-<entry id="17" object="true" symbol="MainMenu"/>
+<entry id="33" object="true" symbol="MainMenu"/>
+<entry field="true" id="26" symbol="min_z"/>
+<entry field="true" id="24" symbol="min_x"/>
 <entry id="9" object="true" symbol="ArcheryActivityView"/>
 <entry id="8388770" module="true" object="true" symbol="Strings"/>
+<entry id="8388643" module="true" symbol="Sensor"/>
 <entry id="8389280" method="true" symbol="getInitialView"/>
 <entry id="12" object="true" symbol="ArcheryActivityMenuDelegate"/>
-<entry id="18" method="true" symbol="MainLayout"/>
+<entry field="true" id="19" symbol="Q_RANGE"/>
+<entry id="34" method="true" symbol="MainLayout"/>
+<entry field="true" id="18" symbol="QN_THR"/>
 <entry id="8388769" module="true" object="true" symbol="Rez"/>
+<entry id="49" method="true" symbol="getCount"/>
 <entry id="8389123" method="true" symbol="onShow"/>
+<entry id="8389808" symbol="period"/>
+<entry id="8390134" symbol="sampleRate"/>
 <entry id="8388702" method="true" symbol="initialize"/>
-<entry field="true" id="22" symbol="AppName"/>
+<entry id="8390132" symbol="gain"/>
+<entry field="true" id="38" symbol="AppName"/>
+<entry field="true" id="41" symbol="mPauseCount"/>
+<entry id="8388890" symbol="sport"/>
+<entry field="true" id="8388892" symbol="name"/>
 <entry id="8389080" method="true" symbol="onMenu"/>
 <entry id="11" object="true" symbol="ArcheryActivityApp"/>
-<entry id="24" symbol="item_2"/>
-<entry id="23" symbol="item_1"/>
-<entry field="true" id="16" symbol="LauncherIcon"/>
-<entry field="true" id="20" symbol="menu_label_2"/>
-<entry field="true" id="19" symbol="menu_label_1"/>
+<entry id="54" symbol="item_2"/>
+<entry id="53" symbol="item_1"/>
+<entry field="true" id="42" symbol="mPauseTime"/>
+<entry id="8388641" module="true" symbol="Math"/>
+<entry field="true" id="32" symbol="LauncherIcon"/>
+<entry field="true" id="36" symbol="menu_label_2"/>
+<entry field="true" id="35" symbol="menu_label_1"/>
 <entry id="8389281" method="true" symbol="onStop"/>
+<entry id="28" object="true" symbol="ShotCounterProcess"/>
 <entry field="true" id="8389065" symbol="locY"/>
 <entry field="true" id="8389064" symbol="locX"/>
 <entry id="8388771" module="true" object="true" symbol="Drawables"/>
 <entry id="8389122" method="true" symbol="onLayout"/>
+<entry field="true" id="46" symbol="mSession"/>
 <entry id="8389279" method="true" symbol="onStart"/>
-<entry field="true" id="15" symbol="id_monkey"/>
+<entry field="true" id="13" symbol="NUM_FEATURE"/>
+<entry id="51" method="true" symbol="getPeriod"/>
+<entry field="true" id="31" symbol="id_monkey"/>
+<entry field="true" id="23" symbol="acc_z2"/>
+<entry field="true" id="22" symbol="acc_z1"/>
 <entry id="8389348" symbol="font"/>
+<entry field="true" id="27" symbol="max_z"/>
+<entry field="true" id="25" symbol="max_x"/>
+<entry field="true" id="21" symbol="acc_x2"/>
+<entry field="true" id="20" symbol="acc_x1"/>
 <entry id="8389347" symbol="color"/>
+<entry field="true" id="44" symbol="mShotCount"/>
+<entry field="true" id="45" symbol="mLogger"/>
 <entry id="8389109" method="true" symbol="onMenuItem"/>
-<entry id="14" module="true" symbol="Layouts"/>
-<entry field="true" id="21" symbol="prompt"/>
+<entry id="50" method="true" symbol="getSamples"/>
+<entry id="48" method="true" symbol="accel_callback"/>
+<entry id="30" module="true" symbol="Layouts"/>
+<entry id="8390175" module="true" symbol="SensorLogging"/>
+<entry field="true" id="37" symbol="prompt"/>
+<entry field="true" id="8388721" method="true" symbol="min"/>
 <entry id="8389125" method="true" symbol="onHide"/>
+<entry field="true" id="17" symbol="QP_THR"/>
 <entry id="8389345" symbol="rezId"/>
 <entry id="8390088" module="true" object="true" symbol="JsonData"/>
 <entry id="8389346" symbol="text"/>
+<entry id="8390129" symbol="coefficients"/>
 <entry field="true" id="8389063" symbol="identifier"/>
+<entry field="true" id="39" symbol="mZ"/>
+<entry field="true" id="8389111" symbol="mY"/>
+<entry field="true" id="8389110" symbol="mX"/>
+<entry id="47" method="true" symbol="max"/>
+<entry field="true" id="15" symbol="HIGH_THR"/>
 <entry id="10" object="true" symbol="ArcheryActivityDelegate"/>
-<entry id="13" module="true" symbol="Menus"/>
+<entry id="29" module="true" symbol="Menus"/>
+<entry id="52" method="true" symbol="onAccelData"/>
+<entry field="true" id="16" symbol="LOW_THR"/>
+<entry id="8390184" symbol="sensorLogger"/>
+<entry field="true" id="43" symbol="mSkipSample"/>
+<entry id="8390135" symbol="enableAccelerometer"/>
+<entry field="true" id="14" symbol="TIME_PTC"/>
 <entry id="8388772" module="true" object="true" symbol="Fonts"/>
+<entry field="true" id="40" symbol="mFilter"/>
 </symbolTable>
 <localVars>
 <entry endPc="268435521" name="dc" stackId="1" startPc="268435479"/>
@@ -87,10 +203,22 @@
 <entry endPc="268435699" name="state" stackId="1" startPc="268435694"/>
 <entry endPc="268435704" name="state" stackId="1" startPc="268435699"/>
 <entry endPc="268435874" name="item" stackId="1" startPc="268435799"/>
-<entry endPc="268436448" name="rez_cmp_local_bitmap_IPCRTVJ23T" stackId="2" startPc="268436013"/>
-<entry endPc="268436448" name="rez_cmp_local_bitmap_id_monkey" stackId="4" startPc="268436013"/>
-<entry endPc="268436448" name="rez_cmp_local_bitmap_IPCRTVJ23T_fontHeight" stackId="3" startPc="268436013"/>
-<entry endPc="268436449" name="dc" stackId="1" startPc="268436001"/>
+<entry endPc="268435896" name="b" stackId="2" startPc="268435874"/>
+<entry endPc="268435896" name="a" stackId="1" startPc="268435874"/>
+<entry endPc="268435918" name="b" stackId="2" startPc="268435896"/>
+<entry endPc="268435918" name="a" stackId="1" startPc="268435896"/>
+<entry endPc="268436209" name="options" stackId="1" startPc="268435922"/>
+<entry endPc="268436310" name="sensorData" stackId="1" startPc="268436210"/>
+<entry endPc="268436459" name="options" stackId="1" startPc="268436314"/>
+<entry endPc="268437392" name="i" stackId="5" startPc="268436633"/>
+<entry endPc="268437408" name="time" stackId="4" startPc="268436575"/>
+<entry endPc="268437408" name="cur_acc_z" stackId="3" startPc="268436575"/>
+<entry endPc="268437408" name="cur_acc_y" stackId="2" startPc="268436575"/>
+<entry endPc="268437408" name="cur_acc_x" stackId="1" startPc="268436575"/>
+<entry endPc="268437983" name="rez_cmp_local_bitmap_72RS138K4E" stackId="2" startPc="268437548"/>
+<entry endPc="268437983" name="rez_cmp_local_bitmap_72RS138K4E_fontHeight" stackId="3" startPc="268437548"/>
+<entry endPc="268437983" name="rez_cmp_local_bitmap_id_monkey" stackId="4" startPc="268437548"/>
+<entry endPc="268437984" name="dc" stackId="1" startPc="268437536"/>
 </localVars>
 <annotations/>
 <functions>
@@ -138,6 +266,41 @@
 <param id="item"/>
 <documentation/>
 </functionEntry>
+<functionEntry accessMode="protected" name="min" parent="ShotCounterProcess">
+<param id="a"/>
+<param id="b"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="protected" name="max" parent="ShotCounterProcess">
+<param id="a"/>
+<param id="b"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="initialize" parent="ShotCounterProcess">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="accel_callback" parent="ShotCounterProcess">
+<param id="sensorData"/>
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onStart" parent="ShotCounterProcess">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onStop" parent="ShotCounterProcess">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="getCount" parent="ShotCounterProcess">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="getSamples" parent="ShotCounterProcess">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="getPeriod" parent="ShotCounterProcess">
+<documentation/>
+</functionEntry>
+<functionEntry accessMode="public" name="onAccelData" parent="ShotCounterProcess">
+<documentation/>
+</functionEntry>
 <functionEntry accessMode="public" name="initialize" parent="MainMenu">
 <documentation/>
 </functionEntry>
@@ -148,17 +311,18 @@
 </functions>
 <dataEntryOffsetMappings>
 <dataEntry offset="87" parentId="" symbolId="globals" type="module"/>
-<dataEntry offset="198" parentId="globals" symbolId="Rez" type="module"/>
-<dataEntry offset="277" parentId="Rez" symbolId="Drawables" type="module"/>
-<dataEntry offset="324" parentId="Rez" symbolId="Menus" type="module"/>
-<dataEntry offset="363" parentId="Menus" symbolId="MainMenu" type="class"/>
-<dataEntry offset="410" parentId="Rez" symbolId="Fonts" type="module"/>
-<dataEntry offset="441" parentId="Rez" symbolId="JsonData" type="module"/>
-<dataEntry offset="472" parentId="Rez" symbolId="Layouts" type="module"/>
-<dataEntry offset="511" parentId="Rez" symbolId="Strings" type="module"/>
-<dataEntry offset="574" parentId="globals" symbolId="ArcheryActivityDelegate" type="class"/>
-<dataEntry offset="629" parentId="globals" symbolId="ArcheryActivityMenuDelegate" type="class"/>
-<dataEntry offset="684" parentId="globals" symbolId="ArcheryActivityApp" type="class"/>
-<dataEntry offset="755" parentId="globals" symbolId="ArcheryActivityView" type="class"/>
+<dataEntry offset="334" parentId="globals" symbolId="Rez" type="module"/>
+<dataEntry offset="413" parentId="Rez" symbolId="Drawables" type="module"/>
+<dataEntry offset="460" parentId="Rez" symbolId="Menus" type="module"/>
+<dataEntry offset="499" parentId="Menus" symbolId="MainMenu" type="class"/>
+<dataEntry offset="546" parentId="Rez" symbolId="Fonts" type="module"/>
+<dataEntry offset="577" parentId="Rez" symbolId="JsonData" type="module"/>
+<dataEntry offset="608" parentId="Rez" symbolId="Layouts" type="module"/>
+<dataEntry offset="647" parentId="Rez" symbolId="Strings" type="module"/>
+<dataEntry offset="710" parentId="globals" symbolId="ArcheryActivityDelegate" type="class"/>
+<dataEntry offset="765" parentId="globals" symbolId="ArcheryActivityMenuDelegate" type="class"/>
+<dataEntry offset="820" parentId="globals" symbolId="ArcheryActivityApp" type="class"/>
+<dataEntry offset="891" parentId="globals" symbolId="ArcheryActivityView" type="class"/>
+<dataEntry offset="970" parentId="globals" symbolId="ShotCounterProcess" type="class"/>
 </dataEntryOffsetMappings>
 </debugInfo>
