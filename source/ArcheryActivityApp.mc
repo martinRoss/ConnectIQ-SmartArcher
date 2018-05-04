@@ -17,7 +17,7 @@ class ArcheryActivityApp extends App.AppBase {
 
     // Return the initial view of your application here
     function getInitialView() {
-        return [ new ArcheryActivityView(), new ArcheryActivityDelegate() ];
+        return [ new ArcheryActivityView() /**new ArcheryActivityDelegate()**/ ];
     }
 
 }

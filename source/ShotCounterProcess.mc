@@ -36,7 +36,7 @@ var max_x = 0;
 var min_z = 0;
 var max_z = 0;
 
-// Pitch counter class
+// Shot counter class
 class ShotCounterProcess {
 
     var mX = [0];
