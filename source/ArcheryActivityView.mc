@@ -1,4 +1,5 @@
 using Toybox.WatchUi as Ui;
+using Toybox.ActivityMonitor as Act;
 
 class ArcheryActivityView extends Ui.View {
 
@@ -30,8 +31,13 @@ class ArcheryActivityView extends Ui.View {
     // Update the view
     function onUpdate(dc) {
         mLabelCount.setText("Shots: " + mShotCounter.getCount().toString());
-        mLabelDistance.setText("Distance: " + mShotCounter.getSamples().toString());
-        mLabelDuration.setText("Duration: " + mShotCounter.getPeriod().toString());
+        var info = Act.getInfo();
+        if (info has :ActiveMinutes) {
+            mLabelDuration.setText("Duration: " + info.ActiveMinutes.toString());
+        }
+        if (info has :distance) {
+            mLabelDistance.setText("Distance: " + info.distance);
+        }
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }

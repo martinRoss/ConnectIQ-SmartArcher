@@ -148,7 +148,7 @@ class ShotCounterProcess {
                    (cur_acc_y > QN_THR) && (cur_acc_z < QP_THR) && (cur_acc_z > QN_THR)) {
                     mPauseCount++;
 
-                    // --- Long enough pause before a pitch?
+                    // --- Long enough pause before a shot?
                     if( mPauseCount > NUM_FEATURE ) {
                         mPauseCount = NUM_FEATURE;
                         mPauseTime = time;
@@ -164,7 +164,7 @@ class ShotCounterProcess {
                 min_z = min(min(acc_z1, acc_z2), cur_acc_z);
                 max_z = max(max(acc_z1, acc_z2), cur_acc_z);
 
-                // --- Pitching motion?
+                // --- Shot motion?
                 if((time - mPauseTime < Q_RANGE) && (((min_z < LOW_THR) && (max_x > HIGH_THR)) || ((min_z < LOW_THR) && (min_x < LOW_THR)))) {
 
                     // --- A new shot detected
