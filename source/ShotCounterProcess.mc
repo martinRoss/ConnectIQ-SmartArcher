@@ -8,11 +8,11 @@ using Toybox.System as System;
 // --- Min duration for the pause feature, [samples]
 const NUM_FEATURE = 20;
 
-// --- Min duration between pitches, [samples]
+// --- Min duration between shots, [samples]
 const TIME_PTC = 20;
 
 // --- High level detection threshold
-const HIGH_THR = 6.0f;
+const HIGH_THR = 4.0f;
 
 // --- Lowh level detection threshold
 const LOW_THR = -4.2f;
@@ -121,7 +121,7 @@ class ShotCounterProcess {
         return mLogger.getStats().sampleCount;
     }
 
-    // Return current shot count
+    // Return sample period
     function getPeriod() {
         return mLogger.getStats().samplePeriod;
     }

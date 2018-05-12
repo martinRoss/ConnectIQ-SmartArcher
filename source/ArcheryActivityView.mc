@@ -30,13 +30,20 @@ class ArcheryActivityView extends Ui.View {
 
     // Update the view
     function onUpdate(dc) {
+        var activityInfo;
+        var distMiles;
+        var distString;
+        
         mLabelCount.setText("Shots: " + mShotCounter.getCount().toString());
-        var info = Act.getInfo();
-        if (info has :ActiveMinutes) {
-            mLabelDuration.setText("Duration: " + info.ActiveMinutes.toString());
+        activityInfo = Act.getInfo();
+        if (false && activityInfo has :ActiveMinutes) {
+            //mLabelDuration.setText("Duration: " + activityInfo.);
         }
-        if (info has :distance) {
-            mLabelDistance.setText("Distance: " + info.distance);
+        if (false && activityInfo has :distance) {
+            //distMiles = activityInfo.distance.toFloat() / 160934; // convert from cm to miles
+            //distString = distMiles.format("%.02f");
+            //distString += "mi";
+            //mLabelDistance.setText("Distance: " + distString);
         }
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
