@@ -5,6 +5,7 @@ using Toybox.SensorLogging as SensorLogging;
 using Toybox.ActivityRecording as Fit;
 using Toybox.System as System;
 
+
 // --- Min duration for the pause feature, [samples]
 const NUM_FEATURE = 20;
 
@@ -48,7 +49,7 @@ class ShotCounterProcess {
     var mSkipSample = 25;
     var mShotCount = 0;
     var mLogger;
-    var mSession;
+    //var mSession;
 
     // Return min of two values
     hidden function min(a, b) {
@@ -77,7 +78,7 @@ class ShotCounterProcess {
         try {
             mFilter = new Math.FirFilter(options);
             mLogger = new SensorLogging.SensorLogger({:enableAccelerometer => true});
-            mSession = Fit.createSession({:name=>"Archery", :sport=>Fit.SPORT_GENERIC, :sensorLogger => mLogger});
+            session = Fit.createSession({:name=>"Archery", :sport=>Fit.SPORT_GENERIC, :sensorLogger => mLogger});
         }
         catch(e) {
             System.println(e.getErrorMessage());
@@ -98,7 +99,7 @@ class ShotCounterProcess {
         var options = {:period => 1, :sampleRate => 25, :enableAccelerometer => true};
         try {
             Sensor.registerSensorDataListener(method(:accel_callback), options);
-            mSession.start();
+            session.start();
         }
         catch(e) {
             System.println(e.getErrorMessage());
@@ -108,7 +109,8 @@ class ShotCounterProcess {
     // Stop shot counter
     function onStop() {
         Sensor.unregisterSensorDataListener();
-        mSession.stop();
+        session.stop();
+        startTime = null;
     }
 
     // Return current shot count

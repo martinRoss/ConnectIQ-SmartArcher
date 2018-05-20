@@ -1,12 +1,18 @@
 using Toybox.WatchUi as Ui;
 using Toybox.ActivityMonitor as Act;
+using Toybox.Math as Math;
+using Toybox.Timer;
+using Toybox.Time;
+using Toybox.Time.Gregorian;
 
 class ArcheryActivityView extends Ui.View {
 
-    var mLabelCount;
-    var mLabelDistance;
-    var mLabelDuration;
+    var mCountDrawable;
+    var mDurationDrawable;
     var mShotCounter;
+    var mTimer;
+    
+    var seconds = 0;
 
     function initialize() {
         View.initialize();
@@ -16,9 +22,16 @@ class ArcheryActivityView extends Ui.View {
     // Load your resources here
     function onLayout(dc) {
         setLayout(Rez.Layouts.MainLayout(dc));
-        mLabelCount = View.findDrawableById("id_shot_count");
-        mLabelDistance = View.findDrawableById("id_distance");
-        mLabelDuration = View.findDrawableById("id_duration");
+        mCountDrawable = View.findDrawableById("id_shot_count");
+        mDurationDrawable = View.findDrawableById("id_duration");
+        
+        setDefaultStrings();
+    }
+    
+    // Sets the default values for the main screen
+    function setDefaultStrings() {
+        mCountDrawable.setText("--");
+        mDurationDrawable.setText("--:--");
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -26,25 +39,33 @@ class ArcheryActivityView extends Ui.View {
     // loading resources into memory.
     function onShow() {
         mShotCounter.onStart();
+        startTime = Time.now();
+        mTimer = new Timer.Timer();
+        mTimer.start(method(:onTimerUpdate), 1000, true);
     }
-
+    
+    // Update for timeer
+    function onTimerUpdate() {
+        seconds += 1;
+        Ui.requestUpdate();
+    }
+    
     // Update the view
     function onUpdate(dc) {
         var activityInfo;
-        var distMiles;
-        var distString;
+        //var secondsSinceStart = 0;
+        var minutes = Math.floor(seconds / 60);
+        var modSeconds = seconds % 60;
         
-        mLabelCount.setText("Shots: " + mShotCounter.getCount().toString());
-        activityInfo = Act.getInfo();
-        if (false && activityInfo has :ActiveMinutes) {
-            //mLabelDuration.setText("Duration: " + activityInfo.);
+        // Add leading 0
+        if (modSeconds < 10) {
+            modSeconds = "0" + modSeconds;
         }
-        if (false && activityInfo has :distance) {
-            //distMiles = activityInfo.distance.toFloat() / 160934; // convert from cm to miles
-            //distString = distMiles.format("%.02f");
-            //distString += "mi";
-            //mLabelDistance.setText("Distance: " + distString);
-        }
+        
+        mCountDrawable.setText(mShotCounter.getCount().toString());
+        // secondsSinceStart = new Time.Moment(Time.now().value() - startTime.value()) / 1000);
+        //mLabelDuration.setText("Duration: " + secondsSinceStart);
+        mDurationDrawable.setText(minutes + ":" + modSeconds);
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
@@ -54,6 +75,7 @@ class ArcheryActivityView extends Ui.View {
     // memory.
     function onHide() {
         mShotCounter.onStop();
+        mTimer.stop();
     }
 
 }

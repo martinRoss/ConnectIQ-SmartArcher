@@ -4,6 +4,8 @@ using Toybox.System as Sys;
 using Toybox.Position as Position;
 
 var screenShape;
+var session;
+var startTime;
 
 class ArcheryActivityApp extends App.AppBase {
 
