@@ -1,5 +1,4 @@
 using Toybox.WatchUi as Ui;
-using Toybox.ActivityMonitor as Act;
 using Toybox.Math as Math;
 using Toybox.Timer;
 using Toybox.Time;

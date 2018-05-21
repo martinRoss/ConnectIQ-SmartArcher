@@ -1,2 +1,2 @@
-.prg
-.debug.xml
+bin/
+*.debug.xml

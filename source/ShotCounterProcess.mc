@@ -2,7 +2,6 @@ using Toybox.WatchUi as Ui;
 using Toybox.Sensor as Sensor;
 using Toybox.Math as Math;
 using Toybox.SensorLogging as SensorLogging;
-using Toybox.ActivityRecording as Fit;
 using Toybox.System as System;
 
 
@@ -36,6 +35,9 @@ var max_x = 0;
 
 var min_z = 0;
 var max_z = 0;
+
+// MOVE THIS TO BEHAVIOR DELEGATE
+var recordingDelegate = null;
 
 // Shot counter class
 class ShotCounterProcess {
@@ -78,7 +80,8 @@ class ShotCounterProcess {
         try {
             mFilter = new Math.FirFilter(options);
             mLogger = new SensorLogging.SensorLogger({:enableAccelerometer => true});
-            session = Fit.createSession({:name=>"Archery", :sport=>Fit.SPORT_GENERIC, :sensorLogger => mLogger});
+            recordingDelegate = new RecordingDelegate();
+            recordingDelegate.setup(mLogger);
         }
         catch(e) {
             System.println(e.getErrorMessage());
@@ -99,7 +102,7 @@ class ShotCounterProcess {
         var options = {:period => 1, :sampleRate => 25, :enableAccelerometer => true};
         try {
             Sensor.registerSensorDataListener(method(:accel_callback), options);
-            session.start();
+            recordingDelegate.start();
         }
         catch(e) {
             System.println(e.getErrorMessage());
@@ -109,7 +112,7 @@ class ShotCounterProcess {
     // Stop shot counter
     function onStop() {
         Sensor.unregisterSensorDataListener();
-        session.stop();
+        recordingDelegate.stop();
         startTime = null;
     }
 
@@ -171,6 +174,9 @@ class ShotCounterProcess {
 
                     // --- A new shot detected
                     mShotCount++;
+                    
+                    // Record shot in fit file
+                    recordingDelegate.shotDetected({});
 
                     // --- Next shot should be farther in time than TIME_PTC
                     mSkipSample = TIME_PTC;
