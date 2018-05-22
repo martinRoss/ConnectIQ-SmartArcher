@@ -176,7 +176,7 @@ class ShotCounterProcess {
                     mShotCount++;
                     
                     // Record shot in fit file
-                    recordingDelegate.shotDetected({});
+                    recordingDelegate.shotDetected();
 
                     // --- Next shot should be farther in time than TIME_PTC
                     mSkipSample = TIME_PTC;

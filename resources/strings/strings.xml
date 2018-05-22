@@ -2,4 +2,7 @@
     <string id="AppName">Smart Archer</string>
     <string id="count_label">Count</string>
     <string id="duration_label">Timer</string>
+    <string id="shot_graph_label">Detected Shots</string>
+    <string id="shot_data_label">Time</string>
+    <string id="shot_data_units">Count</string>
 </strings>
