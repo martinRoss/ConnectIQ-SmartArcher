@@ -4,18 +4,20 @@ using Toybox.Math as Math;
 using Toybox.SensorLogging as SensorLogging;
 using Toybox.System as System;
 
+// Smart Archer Additions
+// Period of release, in MS. Time from string release to follow-through stop (FTS)
+const RELEASE_DURATION_MS = 400;
+// Delta (negative to positive) of release to FTS along x // Louis 7.5G
+const X_RELEASE_DELTA = 2.5;
+// Delta (positive to negative) of release to FTS along z // Louis 2.9G
+const Z_RELEASE_DELTA = 1.2;
+// ---
 
 // --- Min duration for the pause feature, [samples]
 const NUM_FEATURE = 20;
 
 // --- Min duration between shots, [samples]
 const TIME_PTC = 20;
-
-// --- High level detection threshold
-const HIGH_THR = 4.0f;
-
-// --- Lowh level detection threshold
-const LOW_THR = -4.2f;
 
 // --- Pause feature threshold: positive and negative ones
 const QP_THR = 2.0f;
@@ -48,6 +50,7 @@ class ShotCounterProcess {
     var mFilter;
     var mPauseCount = 0;
     var mPauseTime = 0;
+    var mLastShotTime;
     var mSkipSample = 25;
     var mShotCount = 0;
     var mLogger;
@@ -72,6 +75,15 @@ class ShotCounterProcess {
             return b;
         }
     }
+    
+    // Return the absolute value
+    hidden function abs(a) {
+        if(a < 0){
+            return -a;
+        } else {
+            return a;
+        }
+    }
 
     // Constructor
     function initialize() {
@@ -92,7 +104,8 @@ class ShotCounterProcess {
     function accel_callback(sensorData) {
         mX = mFilter.apply(sensorData.accelerometerData.x);
         mY = sensorData.accelerometerData.y;
-        mZ = sensorData.accelerometerData.z;
+        //mZ = sensorData.accelerometerData.z;
+        mZ = mFilter.apply(sensorData.accelerometerData.z);
         onAccelData();
     }
 
@@ -130,12 +143,13 @@ class ShotCounterProcess {
     function getPeriod() {
         return mLogger.getStats().samplePeriod;
     }
-
     // Process new accel data
     function onAccelData() {
         var cur_acc_x = 0;
         var cur_acc_y = 0;
         var cur_acc_z = 0;
+        var cur_x_delta = 0;
+        var cur_z_delta = 0;
         var time = 0;
 
         for(var i = 0; i < mX.size(); ++i) {
@@ -169,9 +183,15 @@ class ShotCounterProcess {
                 min_z = min(min(acc_z1, acc_z2), cur_acc_z);
                 max_z = max(max(acc_z1, acc_z2), cur_acc_z);
 
+                cur_x_delta = max_x - min_x;
+                cur_z_delta = max_z - min_z;
                 // --- Shot motion?
-                if((time - mPauseTime < Q_RANGE) && (((min_z < LOW_THR) && (max_x > HIGH_THR)) || ((min_z < LOW_THR) && (min_x < LOW_THR)))) {
+                //System.println("x_delta:" + cur_x_delta);
+                //System.println("z_delta:" + cur_z_delta);
+                //if ((time - mPauseTime < Q_RANGE) && cur_x_delta > X_RELEASE_DELTA) {
+                if ((time - mPauseTime < Q_RANGE) && cur_x_delta > X_RELEASE_DELTA && cur_z_delta > Z_RELEASE_DELTA) { 
 
+                    // System.println("z_delta:" + cur_z_delta);
                     // --- A new shot detected
                     mShotCount++;
                     
