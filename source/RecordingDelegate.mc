@@ -1,7 +1,7 @@
 using Toybox.ActivityRecording as Record;
 using Toybox.FitContributor as Fit;
 
-var session;
+var session = null;
 
 class RecordingDelegate {
     var shotField;
@@ -21,9 +21,6 @@ class RecordingDelegate {
     // Start fit session
     function start() {
         session.start();
-    }
-    // Pause fit session
-    function pause() {
     }
     // Save fit session
     function save() {

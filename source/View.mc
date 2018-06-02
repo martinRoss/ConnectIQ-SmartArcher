@@ -1,21 +1,13 @@
 using Toybox.WatchUi as Ui;
 using Toybox.Math as Math;
-using Toybox.Timer;
-using Toybox.Time;
-using Toybox.Time.Gregorian;
 
 class ArcheryActivityView extends Ui.View {
 
     var mCountDrawable;
     var mDurationDrawable;
-    var mShotCounter;
-    var mTimer;
-    
-    var seconds = 0;
 
     function initialize() {
         View.initialize();
-        mShotCounter = new ShotCounterProcess();
     }
 
     // Load your resources here
@@ -37,33 +29,23 @@ class ArcheryActivityView extends Ui.View {
     // the state of this View and prepare it to be shown. This includes
     // loading resources into memory.
     function onShow() {
-        mShotCounter.onStart();
-        startTime = Time.now();
-        mTimer = new Timer.Timer();
-        mTimer.start(method(:onTimerUpdate), 1000, true);
-    }
-    
-    // Update for timeer
-    function onTimerUpdate() {
-        seconds += 1;
-        Ui.requestUpdate();
     }
     
     // Update the view
     function onUpdate(dc) {
         var activityInfo;
-        //var secondsSinceStart = 0;
-        var minutes = Math.floor(seconds / 60);
-        var modSeconds = seconds % 60;
+        var minutes = Math.floor($.activitySeconds / 60);
+        var modSeconds = $.activitySeconds % 60;
         
         // Add leading 0
         if (modSeconds < 10) {
             modSeconds = "0" + modSeconds;
         }
-        
-        mCountDrawable.setText(mShotCounter.getCount().toString());
-        // secondsSinceStart = new Time.Moment(Time.now().value() - startTime.value()) / 1000);
-        //mLabelDuration.setText("Duration: " + secondsSinceStart);
+        // Set the count 
+        if ($.shotCounter != null && $.shotCounter.getCount() > 0) {
+            mCountDrawable.setText($.shotCounter.getCount().toString());
+        }
+        // Set the timer
         mDurationDrawable.setText(minutes + ":" + modSeconds);
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
@@ -73,8 +55,8 @@ class ArcheryActivityView extends Ui.View {
     // state of this View here. This includes freeing resources from
     // memory.
     function onHide() {
-        mShotCounter.onStop();
-        mTimer.stop();
+        $.shotCounter.stop();
+        $.activityTimer.stop();
     }
 
 }

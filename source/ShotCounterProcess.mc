@@ -38,8 +38,7 @@ var max_x = 0;
 var min_z = 0;
 var max_z = 0;
 
-// MOVE THIS TO BEHAVIOR DELEGATE
-var recordingDelegate = null;
+
 
 // Shot counter class
 class ShotCounterProcess {
@@ -54,6 +53,7 @@ class ShotCounterProcess {
     var mSkipSample = 25;
     var mShotCount = 0;
     var mLogger;
+    var mActive = false;
     //var mSession;
 
     // Return min of two values
@@ -75,15 +75,6 @@ class ShotCounterProcess {
             return b;
         }
     }
-    
-    // Return the absolute value
-    hidden function abs(a) {
-        if(a < 0){
-            return -a;
-        } else {
-            return a;
-        }
-    }
 
     // Constructor
     function initialize() {
@@ -92,8 +83,6 @@ class ShotCounterProcess {
         try {
             mFilter = new Math.FirFilter(options);
             mLogger = new SensorLogging.SensorLogger({:enableAccelerometer => true});
-            recordingDelegate = new RecordingDelegate();
-            recordingDelegate.setup(mLogger);
         }
         catch(e) {
             System.println(e.getErrorMessage());
@@ -110,23 +99,35 @@ class ShotCounterProcess {
     }
 
     // Start shot counter
-    function onStart() {
+    function start() {
         // initialize accelerometer
+        $.recordingDelegate.setup(mLogger);
+        mActive = true;
         var options = {:period => 1, :sampleRate => 25, :enableAccelerometer => true};
         try {
             Sensor.registerSensorDataListener(method(:accel_callback), options);
-            recordingDelegate.start();
+            //recordingDelegate.start();
         }
         catch(e) {
             System.println(e.getErrorMessage());
         }
     }
+    
+    // Pause the process
+    function pause() {
+        mActive = false; 
+    }
+    
+    // Resume the process
+    function resume() {
+        mActive = true; 
+    }
 
     // Stop shot counter
-    function onStop() {
+    function stop() {
         Sensor.unregisterSensorDataListener();
-        recordingDelegate.stop();
-        startTime = null;
+        //recordingDelegate.stop();
+        //startTime = null;
     }
 
     // Return current shot count
@@ -145,6 +146,7 @@ class ShotCounterProcess {
     }
     // Process new accel data
     function onAccelData() {
+        if (!mmActive) { return false; }
         var cur_acc_x = 0;
         var cur_acc_y = 0;
         var cur_acc_z = 0;
@@ -196,7 +198,7 @@ class ShotCounterProcess {
                     mShotCount++;
                     
                     // Record shot in fit file
-                    recordingDelegate.shotDetected();
+                    $.recordingDelegate.shotDetected();
 
                     // --- Next shot should be farther in time than TIME_PTC
                     mSkipSample = TIME_PTC;
