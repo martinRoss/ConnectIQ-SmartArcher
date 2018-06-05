@@ -1,11 +1,14 @@
 using Toybox.System;
 using Toybox.WatchUi as Ui;
 using Toybox.Timer;
+using Toybox.Attention as Attention;
 
 var recordingDelegate = null;
 var shotCounter = null;
 var activitySeconds = 0;
 var activityTimer;
+var startToneIdx = 1;
+var stopToneIdx = 2;
 
 class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
     // Initialize the delegate super class
@@ -21,6 +24,10 @@ class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
         // Start session
         if ($.session == null) {
             System.println("Start session");
+            // Play a sound if available            
+            if (Attention has :playTone) {
+                Attention.playTone(startToneIdx);
+            }
             recordingDelegate = new RecordingDelegate();
             shotCounter = new ShotCounterProcess();
             activityTimer = new Timer.Timer();
@@ -31,6 +38,10 @@ class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
         // Pause session
         else if ($.session.isRecording()) {
             System.println("Pause session");
+            // Play a sound if available            
+            if (Attention has :playTone) {
+                Attention.playTone(stopToneIdx);
+            }
             shotCounter.pause();
             recordingDelegate.stop();
             System.println("session.isRecording:" + $.session.isRecording());
@@ -39,6 +50,10 @@ class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
         // Resume session
         else if ($.session != null && !$.session.isRecording()) {
             System.println("Resume session");
+            // Play a sound if available            
+            if (Attention has :playTone) {
+                Attention.playTone(startToneIdx);
+            }
             shotCounter.resume();
             recordingDelegate.start();
             activityTimer.start(method(:onTimerUpdate), 1000, true);
