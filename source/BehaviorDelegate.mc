@@ -11,6 +11,8 @@ var startToneIdx = 1;
 var stopToneIdx = 2;
 
 class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
+    var dialog;
+    var dialogHeaderString;
     // Initialize the delegate super class
     function initialize() {
         BehaviorDelegate.initialize();
@@ -44,11 +46,11 @@ class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
             }
             shotCounter.pause();
             recordingDelegate.stop();
-            System.println("session.isRecording:" + $.session.isRecording());
             activityTimer.stop();
+            pushPauseMenu(shotCounter.getCount());
         }
         // Resume session
-        else if ($.session != null && !$.session.isRecording()) {
+        /**else if ($.session != null && !$.session.isRecording()) {
             System.println("Resume session");
             // Play a sound if available            
             if (Attention has :playTone) {
@@ -57,7 +59,19 @@ class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
             shotCounter.resume();
             recordingDelegate.start();
             activityTimer.start(method(:onTimerUpdate), 1000, true);
-        }
+        }*/
+    }
+    
+    // Push the pause menu
+    function pushPauseMenu(curShotCount) {
+        var menu = new WatchUi.Menu();
+        var delegate;
+        menu.setTitle(shotsString + ": " + curShotCount);
+        menu.addItem(resumeString, :resume);
+        menu.addItem(saveString, :save);
+        menu.addItem(discardString, :discard);
+        delegate = new PauseMenuDelegate();
+        WatchUi.pushView(menu, delegate, SLIDE_IMMEDIATE); 
     }
     
     // Update for timer
@@ -66,7 +80,6 @@ class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
         Ui.requestUpdate();
     }
 
-    // Detect Menu button input
     function onKey(keyEvent) {
         System.println(keyEvent.getKey()); // e.g. KEY_MENU = 7
     }

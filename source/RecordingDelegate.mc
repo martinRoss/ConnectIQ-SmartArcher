@@ -24,11 +24,19 @@ class RecordingDelegate {
     }
     // Save fit session
     function save() {
+        session.stop();
         session.save();
+        System.exit();
     }
     // Stop fit session
     function stop() {
         session.stop();
+    }
+    // Discard
+    function discard() {
+        session.stop();
+        session = null;
+        System.exit();
     }
     // Record shot details when detected
     function shotDetected() {
