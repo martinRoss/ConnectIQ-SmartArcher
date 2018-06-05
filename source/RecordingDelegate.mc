@@ -5,7 +5,6 @@ var session = null;
 
 class RecordingDelegate {
     var shotField;
-    var shotValue = 1;
     var SHOT_FIELD_ID = 0;
     
     // Setup fit session with the referenced logger
@@ -14,7 +13,7 @@ class RecordingDelegate {
         shotField = session.createField(
             "shot_detected",
             SHOT_FIELD_ID,
-            Fit.DATA_TYPE_SINT8,
+            Fit.DATA_TYPE_SINT16,
             { :mesgType=>Fit.MESG_TYPE_RECORD, :units=>"bars" }
         );
     }
@@ -31,8 +30,8 @@ class RecordingDelegate {
         session.stop();
     }
     // Record shot details when detected
-    function shotDetected() {
+    function shotDetected(intensity) {
         System.println("Shot detected");
-        shotField.setData(shotValue);
+        shotField.setData(intensity);
     }
 }

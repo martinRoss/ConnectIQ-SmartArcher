@@ -26,6 +26,9 @@ const QN_THR = -QP_THR;
 // --- Pause range: number of samples * 40 ms each
 const Q_RANGE = (100 * 40);
 
+// Tracking of shot intensities
+var shot_intensities = [];
+
 var acc_x1 = 0;
 var acc_x2 = 0;
 
@@ -146,13 +149,14 @@ class ShotCounterProcess {
     }
     // Process new accel data
     function onAccelData() {
-        if (!mmActive) { return false; }
+        if (!mActive) { return false; }
         var cur_acc_x = 0;
         var cur_acc_y = 0;
         var cur_acc_z = 0;
         var cur_x_delta = 0;
         var cur_z_delta = 0;
         var time = 0;
+        var cur_shot_intensity = 0;
 
         for(var i = 0; i < mX.size(); ++i) {
 
@@ -197,8 +201,15 @@ class ShotCounterProcess {
                     // --- A new shot detected
                     mShotCount++;
                     
+                    // Compute current shot intensity
+                    cur_shot_intensity = cur_x_delta;
+                    shot_intensities.push(cur_shot_intensity);
+                    
+                     
+                    
+                    
                     // Record shot in fit file
-                    $.recordingDelegate.shotDetected();
+                    $.recordingDelegate.shotDetected(cur_shot_intensity);
 
                     // --- Next shot should be farther in time than TIME_PTC
                     mSkipSample = TIME_PTC;

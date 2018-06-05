@@ -50,6 +50,12 @@ class ArcheryActivityView extends Ui.View {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
     }
+    
+    // Draws the intensity graph of the last shot (only last for a short duration)
+    function drawIntensity() {
+        // duration to show, in ms
+        var duration = 3000;
+    }
 
     // Called when this View is removed from the screen. Save the
     // state of this View here. This includes freeing resources from

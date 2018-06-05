@@ -14,13 +14,13 @@ class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
     }
     // Detect Menu behavior
     function onMenu() {
-        System.println("Menu behavior triggered");
+        //System.println("Menu behavior triggered");
     }
     // Detect select behavior
     function onSelect() {
         // Start session
         if ($.session == null) {
-            System.println("Start session");
+            //System.println("Start session");
             recordingDelegate = new RecordingDelegate();
             shotCounter = new ShotCounterProcess();
             activityTimer = new Timer.Timer();
@@ -33,12 +33,12 @@ class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
             System.println("Pause session");
             shotCounter.pause();
             recordingDelegate.stop();
-            System.println("session.isRecording:" + $.session.isRecording());
+            //System.println("session.isRecording:" + $.session.isRecording());
             activityTimer.stop();
         }
         // Resume session
         else if ($.session != null && !$.session.isRecording()) {
-            System.println("Resume session");
+            //System.println("Resume session");
             shotCounter.resume();
             recordingDelegate.start();
             activityTimer.start(method(:onTimerUpdate), 1000, true);
