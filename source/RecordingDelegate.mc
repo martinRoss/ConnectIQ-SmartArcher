@@ -25,8 +25,10 @@ class RecordingDelegate {
     // Save fit session
     function save() {
         session.stop();
-        session.save();
-        System.exit();
+        var success = session.save();
+        if (success) {
+            System.exit();
+        }
     }
     // Stop fit session
     function stop() {
@@ -35,8 +37,10 @@ class RecordingDelegate {
     // Discard
     function discard() {
         session.stop();
-        session = null;
-        System.exit();
+        var success = session.discard();
+        if (success) {
+            System.exit();
+        }
     }
     // Record shot details when detected
     function shotDetected() {

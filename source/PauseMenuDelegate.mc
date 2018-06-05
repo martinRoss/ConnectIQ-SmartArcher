@@ -12,27 +12,27 @@ class PauseMenuDelegate extends Ui.MenuInputDelegate {
     }
 
     function onMenuItem(item) {
+        var behaviorDelegate = new SmartArcherBehaviorDelegate();
         if (item == :resume) {
             System.println("resume");
-            if (Attention has :playTone) {
-                Attention.playTone(startToneIdx);
-            }
+            behaviorDelegate.alertForEvent($.startToneIdx);
             $.shotCounter.resume();
             $.recordingDelegate.start();
             $.activityTimer.start(method(:onTimerUpdate), 1000, true);
-
         }
         else if (item == :save) {
             System.println("save");
             $.recordingDelegate.save();
+            behaviorDelegate.alertForEvent($.startToneIdx);
         }
         else {
             System.println("discard");
             $.recordingDelegate.discard();
         }
+        behaviorDelegate = null;
     }
     // Update for timer
-    // Duplicate....
+    // Duplicate.... Move behavior delegate to global?
     function onTimerUpdate() {
         $.activitySeconds += 1;
         Ui.requestUpdate();

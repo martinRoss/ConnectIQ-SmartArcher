@@ -146,7 +146,7 @@ class ShotCounterProcess {
     }
     // Process new accel data
     function onAccelData() {
-        if (!mmActive) { return false; }
+        if (!mActive) { return false; }
         var cur_acc_x = 0;
         var cur_acc_y = 0;
         var cur_acc_z = 0;

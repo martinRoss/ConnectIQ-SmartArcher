@@ -18,18 +18,33 @@ class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
         BehaviorDelegate.initialize();
     }
     // Detect Menu behavior
-    function onMenu() {
-        System.println("Menu behavior triggered");
+    //function onMenu() {
+        //System.println("Menu behavior triggered");
+    //}
+    function alertForEvent(toneIdx) {
+		// Play a sound if available            
+		if (Attention has :playTone) {
+			Attention.playTone(toneIdx);
+		}
+		// Vibrate if available
+		if (Attention has :vibrate) {
+			var vibrateData = [
+				new Attention.VibeProfile(  25, 100 ),
+				new Attention.VibeProfile(  50, 100 ),
+				new Attention.VibeProfile(  75, 100 ),
+				new Attention.VibeProfile( 100, 100 ),
+				new Attention.VibeProfile(  75, 100 ),
+			];
+
+			Attention.vibrate(vibrateData);
+		}
     }
     // Detect select behavior
     function onSelect() {
         // Start session
         if ($.session == null) {
             System.println("Start session");
-            // Play a sound if available            
-            if (Attention has :playTone) {
-                Attention.playTone(startToneIdx);
-            }
+            alertForEvent(startToneIdx);
             recordingDelegate = new RecordingDelegate();
             shotCounter = new ShotCounterProcess();
             activityTimer = new Timer.Timer();
@@ -40,26 +55,21 @@ class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
         // Pause session
         else if ($.session.isRecording()) {
             System.println("Pause session");
-            // Play a sound if available            
-            if (Attention has :playTone) {
-                Attention.playTone(stopToneIdx);
-            }
+            alertForEvent(stopToneIdx);
             shotCounter.pause();
             recordingDelegate.stop();
             activityTimer.stop();
             pushPauseMenu(shotCounter.getCount());
         }
         // Resume session
-        /**else if ($.session != null && !$.session.isRecording()) {
+        // Duplicate...
+        else if ($.session != null && !$.session.isRecording()) {
             System.println("Resume session");
-            // Play a sound if available            
-            if (Attention has :playTone) {
-                Attention.playTone(startToneIdx);
-            }
+            alertForEvent(startToneIdx);
             shotCounter.resume();
             recordingDelegate.start();
             activityTimer.start(method(:onTimerUpdate), 1000, true);
-        }*/
+        }
     }
     
     // Push the pause menu
