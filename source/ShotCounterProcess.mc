@@ -4,58 +4,44 @@ using Toybox.Math as Math;
 using Toybox.SensorLogging as SensorLogging;
 using Toybox.System as System;
 
-// Smart Archer Additions
+// Pause is slow expansion before release
+// Sensor listener sample rate
+const SAMPLE_RATE = 25;
+// Sensor listener period
+const LISTENER_PERIOD = 1;
+// Pause period, samples 600 ms
+const PAUSE_PERIOD = 0.6 * SAMPLE_RATE;
+// Pause threshold
+const PAUSE_THR = 0.5;
+// Min time between shots, in samples
+const MIN_TIME_BTWN = 7 * SAMPLE_RATE;
+// Delta (negative to positive) of release to FTS along x // Louis 7.5G
+const X_RELEASE_DELTA = 1.2;
+// Delta (positive to negative) of release to FTS along z // Louis 2.9G
+// const Z_RELEASE_DELTA = 1.2;
 // Period of release, in MS. Time from string release to follow-through stop (FTS)
 const RELEASE_DURATION_MS = 400;
-// Delta (negative to positive) of release to FTS along x // Louis 7.5G
-const X_RELEASE_DELTA = 2.5;
-// Delta (positive to negative) of release to FTS along z // Louis 2.9G
-const Z_RELEASE_DELTA = 1.2;
-// ---
+const RELEASE_DURATION = RELEASE_DURATION_MS / (1000 / SAMPLE_RATE);
 
-// --- Min duration for the pause feature, [samples]
-const NUM_FEATURE = 20;
 
-// --- Min duration between shots, [samples]
-const TIME_PTC = 20;
-
-// --- Pause feature threshold: positive and negative ones
-const QP_THR = 2.0f;
-const QN_THR = -QP_THR;
-
-// --- Pause range: number of samples * 40 ms each
-const Q_RANGE = (100 * 40);
-
-var acc_x1 = 0;
-var acc_x2 = 0;
-
-var acc_z1 = 0;
-var acc_z2 = 0;
-
+// Current extents within release time window
 var min_x = 0;
 var max_x = 0;
 
-var min_z = 0;
-var max_z = 0;
-
-
-
 // Shot counter class
 class ShotCounterProcess {
-
     var mX = [0];
     var mY = [0];
     var mZ = [0];
     var mFilter;
-    var mPauseCount = 0;
-    var mPauseTime = 0;
-    var mLastShotTime;
-    var mSkipSample = 25;
     var mShotCount = 0;
     var mLogger;
     var mActive = false;
-    //var mSession;
-
+    var mPauseCount = 0;
+    var mTimeOfLastShot = 0;
+    var mTime = 0;
+    var mTimeOfLastPause = 0;
+    
     // Return min of two values
     hidden function min(a, b) {
         if(a < b) {
@@ -92,9 +78,8 @@ class ShotCounterProcess {
     // Callback to receive accel data
     function accel_callback(sensorData) {
         mX = mFilter.apply(sensorData.accelerometerData.x);
-        mY = sensorData.accelerometerData.y;
-        //mZ = sensorData.accelerometerData.z;
-        mZ = mFilter.apply(sensorData.accelerometerData.z);
+        mY = mFilter.apply(sensorData.accelerometerData.y);
+        mZ = sensorData.accelerometerData.z;
         onAccelData();
     }
 
@@ -103,10 +88,9 @@ class ShotCounterProcess {
         // initialize accelerometer
         $.recordingDelegate.setup(mLogger);
         mActive = true;
-        var options = {:period => 1, :sampleRate => 25, :enableAccelerometer => true};
+        var options = {:period => LISTENER_PERIOD, :sampleRate => SAMPLE_RATE, :enableAccelerometer => true};
         try {
             Sensor.registerSensorDataListener(method(:accel_callback), options);
-            //recordingDelegate.start();
         }
         catch(e) {
             System.println(e.getErrorMessage());
@@ -126,8 +110,6 @@ class ShotCounterProcess {
     // Stop shot counter
     function stop() {
         Sensor.unregisterSensorDataListener();
-        //recordingDelegate.stop();
-        //startTime = null;
     }
 
     // Return current shot count
@@ -144,86 +126,92 @@ class ShotCounterProcess {
     function getPeriod() {
         return mLogger.getStats().samplePeriod;
     }
+    
+    // Compute custom shot magnitude score
+    // @param {array} x_arr
+    // @param {array} y_arr
+    // @param {array} z_arr
+    // @returns {float} magnitude
+    function computeShotMagnitude() {
+        var mag = 0;
+        // TODO: Implement magnitude function
+        // We actually need to keep computing on acc and write a detect pause on the end of a release
+        // I.e. we might have enough spike/delta to trigger a shot detected, but it continues to spike afterwards
+        // More logic needed in onAccData()
+        return mag;
+    }
+    
     // Process new accel data
     function onAccelData() {
-        if (!mActive) { return false; }
         var cur_acc_x = 0;
         var cur_acc_y = 0;
         var cur_acc_z = 0;
         var cur_x_delta = 0;
-        var cur_z_delta = 0;
-        var time = 0;
+        var shot_magnitude = 0;
+        
+        // Process paused
+        if (!mActive) { return false; }
+        
 
         for(var i = 0; i < mX.size(); ++i) {
-
+            
             cur_acc_x = mX[i];
             cur_acc_y = mY[i];
             cur_acc_z = mZ[i];
-
-            if(mSkipSample > 0) {
-                mSkipSample--;
+          
+            // Skip if time not far enough ahead from last shot
+            if (mTime - mTimeOfLastShot < MIN_TIME_BTWN) {
+                // skip futher computation, save juice!
             }
+            // far enough in the future, process the signal
             else {
-                // --- Pause feature?
-                if((cur_acc_x < QP_THR) && (cur_acc_x > QN_THR) && (cur_acc_y < QP_THR) &&
-                   (cur_acc_y > QN_THR) && (cur_acc_z < QP_THR) && (cur_acc_z > QN_THR)) {
+                // Movement has slowed, count off a pause
+                if((cur_acc_x < PAUSE_THR) && (cur_acc_x > -PAUSE_THR) &&
+                   (cur_acc_y < PAUSE_THR) && (cur_acc_y > -PAUSE_THR)) {
                     mPauseCount++;
-
-                    // --- Long enough pause before a shot?
-                    if( mPauseCount > NUM_FEATURE ) {
-                        mPauseCount = NUM_FEATURE;
-                        mPauseTime = time;
-                        }
-                    }
-                else {
-                    mPauseTime = 0;
+                    mTimeOfLastPause = mTime;
+                    System.println("Pause at: " + mTime);
                 }
-
-                min_x = min(min(acc_x1, acc_x2), cur_acc_x);
-                max_x = max(max(acc_x1, acc_x2), cur_acc_x);
-
-                min_z = min(min(acc_z1, acc_z2), cur_acc_z);
-                max_z = max(max(acc_z1, acc_z2), cur_acc_z);
-
-                cur_x_delta = max_x - min_x;
-                cur_z_delta = max_z - min_z;
-                // --- Shot motion?
-                //System.println("x_delta:" + cur_x_delta);
-                //System.println("z_delta:" + cur_z_delta);
-                //if ((time - mPauseTime < Q_RANGE) && cur_x_delta > X_RELEASE_DELTA) {
-                if ((time - mPauseTime < Q_RANGE) && cur_x_delta > X_RELEASE_DELTA && cur_z_delta > Z_RELEASE_DELTA) { 
-
-                    // System.println("z_delta:" + cur_z_delta);
-                    // --- A new shot detected
-                    mShotCount++;
+                // Check shape, we've had a spike after long enough of a pause
+                else if (mPauseCount > PAUSE_PERIOD) {
+                    System.println("Long enough pause at: " + mTime);
+                    min_x = min(min_x, cur_acc_x);
+                    max_x = max(max_x, cur_acc_x);
+                    cur_x_delta = max_x - min_x;
                     
-                    // Record shot in fit file
-                    $.recordingDelegate.shotDetected();
-
-                    // --- Next shot should be farther in time than TIME_PTC
-                    mSkipSample = TIME_PTC;
-
-                    // --- Clear the previous accelerometer values for X and Z channels
-                    acc_x2 = 0;
-                    acc_x1 = 0;
-                    acc_z2 = 0;
-                    acc_z1 = 0;
-
-                    // --- Reset pause feature counter
-                    mPauseCount = 0;
-                    mPauseTime = 0;
+                    // Check if this is short enough time for a release
+                    if (mTime - mTimeOfLastPause < RELEASE_DURATION) {
+                        System.println("Short enough, cur_x_delta: " + cur_x_delta);
+                        // Shot detected?
+                        if (cur_x_delta > X_RELEASE_DELTA) {
+							// shot_magnitude = computeShotMagnitude();
+							System.println("Shot magnitude: " + cur_x_delta +", Time: " + mTime);
+						    mTimeOfLastShot = mTime;
+                            recordingDelegate.shotDetected(); 
+                            mPauseCount = 0;
+                            mShotCount++;
+                            min_x = 0;
+                            max_x= 0;
+						}
+                    }
+					// We've been spiking for too long, reset pause count
+					// TODO: extending past detection
+					else {
+                        mPauseCount = 0; 
+                        min_x = 0;
+                        max_x = 0;
+                    }
                 }
+                // Movement before we've paused long enough, need to start the counter over
                 else {
-                    // --- Update 3 elements of acceleration for X
-                    acc_x2 = acc_x1;
-                    acc_x1 = cur_acc_x;
-
-                    // --- Update 3 elements of acceleration for Z
-                    acc_z2 = acc_z1;
-                    acc_z1 = cur_acc_z;
+                    mPauseCount = 0;
+                    min_x = 0;
+                    max_x = 0;
                 }
             }
-            time++;
+            // Increment time (by sample period) 
+            mTime++; 
+
         }
         Ui.requestUpdate();
     }

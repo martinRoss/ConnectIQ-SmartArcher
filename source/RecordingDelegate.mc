@@ -44,7 +44,6 @@ class RecordingDelegate {
     }
     // Record shot details when detected
     function shotDetected() {
-        System.println("Shot detected");
         shotField.setData(shotValue);
     }
 }

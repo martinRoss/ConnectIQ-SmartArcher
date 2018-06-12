@@ -24,6 +24,8 @@ class PauseMenuDelegate extends Ui.MenuInputDelegate {
             System.println("save");
             $.recordingDelegate.save();
             behaviorDelegate.alertForEvent($.startToneIdx);
+            // TODO: Put in a 1 second progress, then show summary in a "FinishedMenuDelegate" 
+            // with DONE input
         }
         else {
             System.println("discard");
