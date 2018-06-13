@@ -154,7 +154,7 @@ class ShotCounterProcess {
         var shot_magnitude = 0;
         
         // Process paused
-        if (!mActive) { return false; }
+        if (!mActive) { return; }
         
 
         for(var i = 0; i < mX.size(); ++i) {

@@ -26,9 +26,6 @@ class RecordingDelegate {
     function save() {
         session.stop();
         var success = session.save();
-        if (success) {
-            System.exit();
-        }
     }
     // Stop fit session
     function stop() {

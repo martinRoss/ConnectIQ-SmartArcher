@@ -5,9 +5,6 @@ using Toybox.Position as Position;
 
 var screenShape;
 var startTime;
-var resumeString;
-var saveString;
-var discardString;
 var shotsString;
 
 class ArcheryActivityApp extends App.AppBase {
@@ -20,11 +17,7 @@ class ArcheryActivityApp extends App.AppBase {
     function onStart(state) {
         screenShape = Sys.getDeviceSettings().screenShape;
         Position.enableLocationEvents(Position.LOCATION_CONTINUOUS, method(:onPosition));
-        // Load dialog strings
         shotsString = Ui.loadResource(Rez.Strings.shot_label); 
-        resumeString = Ui.loadResource(Rez.Strings.resume);
-        saveString = Ui.loadResource(Rez.Strings.save);
-        discardString = Ui.loadResource(Rez.Strings.discard);
         return false;
     }
 

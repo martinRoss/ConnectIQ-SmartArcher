@@ -5,31 +5,52 @@
 //
 
 using Toybox.WatchUi as Ui;
+using Toybox.Timer;
+using Toybox.ActivityMonitor as Act;
 
 class PauseMenuDelegate extends Ui.MenuInputDelegate {
+    var mActionTime = 1500;
+    
     function initialize() {
         MenuInputDelegate.initialize();
     }
 
     function onMenuItem(item) {
         var behaviorDelegate = new SmartArcherBehaviorDelegate();
+        var progressBar;
+        var actionTimer = new Timer.Timer();
+        
         if (item == :resume) {
-            System.println("resume");
             behaviorDelegate.alertForEvent($.startToneIdx);
             $.shotCounter.resume();
             $.recordingDelegate.start();
             $.activityTimer.start(method(:onTimerUpdate), 1000, true);
         }
         else if (item == :save) {
-            System.println("save");
-            $.recordingDelegate.save();
+            actionTimer.start(method(:saveComplete), mActionTime, false);
             behaviorDelegate.alertForEvent($.startToneIdx);
-            // TODO: Put in a 1 second progress, then show summary in a "FinishedMenuDelegate" 
-            // with DONE input
+            progressBar = new WatchUi.ProgressBar(
+				Ui.loadResource(Rez.Strings.saving),
+				null
+			);
+			Ui.pushView(
+				progressBar,
+				null,
+				Ui.SLIDE_DOWN
+			);
         }
         else {
-            System.println("discard");
-            $.recordingDelegate.discard();
+            actionTimer.start(method(:discardComplete), mActionTime, false);
+            progressBar = new WatchUi.ProgressBar(
+				Ui.loadResource(Rez.Strings.discarding),
+				null
+			);
+			Ui.pushView(
+				progressBar,
+				null,
+				Ui.SLIDE_DOWN
+			);
+
         }
         behaviorDelegate = null;
     }
@@ -38,5 +59,29 @@ class PauseMenuDelegate extends Ui.MenuInputDelegate {
     function onTimerUpdate() {
         $.activitySeconds += 1;
         Ui.requestUpdate();
+    }
+    
+    // After save UI (which is not actually saving)
+    function saveComplete() {
+        /*var info = Act.getInfo();
+        var menu = new Ui.Menu();
+        var delegate = new DoneMenuDelegate();
+        var cals = 0;
+        var calsString = "";
+        var shotsString = $.shotCounter.getCount() +
+            " " + Ui.loadResource(Rez.Strings.shot_label);
+        $.recordingDelegate.save();
+        if (info.calories != null) {
+           calsString = cals + "C"; 
+        }
+        menu.setTitle(shotsString + ", " + calsString);
+        menu.addItem(Ui.loadResource(Rez.Strings.done), :done);
+        WatchUi.pushView(menu, delegate, SLIDE_IMMEDIATE); */
+        System.exit();
+    }
+    
+    // After discard UI
+    function discardComplete() {
+        $.recordingDelegate.discard();
     }
 }

@@ -75,12 +75,11 @@ class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
     // Push the pause menu
     function pushPauseMenu(curShotCount) {
         var menu = new WatchUi.Menu();
-        var delegate;
+        var delegate = new PauseMenuDelegate();
         menu.setTitle(shotsString + ": " + curShotCount);
-        menu.addItem(resumeString, :resume);
-        menu.addItem(saveString, :save);
-        menu.addItem(discardString, :discard);
-        delegate = new PauseMenuDelegate();
+        menu.addItem(Ui.loadResource(Rez.Strings.resume), :resume);
+        menu.addItem(Ui.loadResource(Rez.Strings.save), :save);
+        menu.addItem(Ui.loadResource(Rez.Strings.discard), :discard);
         WatchUi.pushView(menu, delegate, SLIDE_IMMEDIATE); 
     }
     
@@ -88,9 +87,5 @@ class SmartArcherBehaviorDelegate extends Ui.BehaviorDelegate {
     function onTimerUpdate() {
         activitySeconds += 1;
         Ui.requestUpdate();
-    }
-
-    function onKey(keyEvent) {
-        System.println(keyEvent.getKey()); // e.g. KEY_MENU = 7
     }
 }
