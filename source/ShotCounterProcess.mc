@@ -12,21 +12,24 @@ const LISTENER_PERIOD = 1;
 // Pause period, samples 600 ms
 const PAUSE_PERIOD = 0.6 * SAMPLE_RATE;
 // Pause threshold
-const PAUSE_THR = 0.5;
+const X_PAUSE_THR = 0.5;
+const Y_PAUSE_THR = 0.75;
 // Min time between shots, in samples
-const MIN_TIME_BTWN = 7 * SAMPLE_RATE;
-// Delta (negative to positive) of release to FTS along x // Louis 7.5G
-const X_RELEASE_DELTA = 1.2;
+const MIN_TIME_BTWN = 4 * SAMPLE_RATE;
+// Delta (negative to positive) of release to FTS // Louis 7.5G
+const X_RELEASE_DELTA = 3.5;
+const Y_RELEASE_DELTA = 1.2;
 // Delta (positive to negative) of release to FTS along z // Louis 2.9G
 // const Z_RELEASE_DELTA = 1.2;
-// Period of release, in MS. Time from string release to follow-through stop (FTS)
-const RELEASE_DURATION_MS = 400;
-const RELEASE_DURATION = RELEASE_DURATION_MS / (1000 / SAMPLE_RATE);
+// Release duration, 0.5 seconds
+const RELEASE_DURATION = 0.5 * SAMPLE_RATE;
 
 
 // Current extents within release time window
 var min_x = 0;
+var min_y = 0;
 var max_x = 0;
+var max_y = 0;
 
 // Shot counter class
 class ShotCounterProcess {
@@ -147,6 +150,7 @@ class ShotCounterProcess {
         var cur_acc_y = 0;
         var cur_acc_z = 0;
         var cur_x_delta = 0;
+        var cur_y_delta = 0;
         var shot_magnitude = 0;
         
         // Process paused
@@ -165,9 +169,10 @@ class ShotCounterProcess {
             }
             // far enough in the future, process the signal
             else {
+                System.println("cur_acc_x: " + cur_acc_x);
                 // Movement has slowed, count off a pause
-                if((cur_acc_x < PAUSE_THR) && (cur_acc_x > -PAUSE_THR) &&
-                   (cur_acc_y < PAUSE_THR) && (cur_acc_y > -PAUSE_THR)) {
+                if((cur_acc_x < X_PAUSE_THR) && (cur_acc_x > -X_PAUSE_THR) &&
+                   (cur_acc_y < Y_PAUSE_THR) && (cur_acc_y > -Y_PAUSE_THR)) {
                     mPauseCount++;
                     mTimeOfLastPause = mTime;
                     System.println("Pause at: " + mTime);
@@ -176,14 +181,17 @@ class ShotCounterProcess {
                 else if (mPauseCount > PAUSE_PERIOD) {
                     System.println("Long enough pause at: " + mTime);
                     min_x = min(min_x, cur_acc_x);
+                    min_y = min(min_y, cur_acc_y);
                     max_x = max(max_x, cur_acc_x);
+                    max_y = max(max_y, cur_acc_y);
                     cur_x_delta = max_x - min_x;
+                    cur_y_delta = max_y - min_y;
                     
                     // Check if this is short enough time for a release
                     if (mTime - mTimeOfLastPause < RELEASE_DURATION) {
                         System.println("Short enough, cur_x_delta: " + cur_x_delta);
                         // Shot detected?
-                        if (cur_x_delta > X_RELEASE_DELTA) {
+                        if (cur_x_delta > X_RELEASE_DELTA && cur_y_delta > Y_RELEASE_DELTA) {
 							// shot_magnitude = computeShotMagnitude();
 							System.println("Shot magnitude: " + cur_x_delta +", Time: " + mTime);
 						    mTimeOfLastShot = mTime;
@@ -192,6 +200,10 @@ class ShotCounterProcess {
                             mShotCount++;
                             min_x = 0;
                             max_x= 0;
+                            min_y = 0;
+                            max_x = 0;
+                            cur_x_delta = 0;
+                            cur_y_delta = 0;
 						}
                     }
 					// We've been spiking for too long, reset pause count
@@ -200,6 +212,11 @@ class ShotCounterProcess {
                         mPauseCount = 0; 
                         min_x = 0;
                         max_x = 0;
+                        min_y = 0;
+                        max_y = 0;
+                        cur_x_delta = 0;
+                        cur_y_delta = 0;
+
                     }
                 }
                 // Movement before we've paused long enough, need to start the counter over
@@ -207,6 +224,11 @@ class ShotCounterProcess {
                     mPauseCount = 0;
                     min_x = 0;
                     max_x = 0;
+                    min_y = 0;
+                    max_y = 0;
+                    cur_x_delta = 0;
+                    cur_y_delta = 0;
+
                 }
             }
             // Increment time (by sample period) 
