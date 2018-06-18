@@ -17,7 +17,7 @@ const Y_PAUSE_THR = 0.75;
 // Min time between shots, in samples
 const MIN_TIME_BTWN = 4 * SAMPLE_RATE;
 // Delta (negative to positive) of release to FTS // Louis 7.5G
-const X_RELEASE_DELTA = 3.5;
+const X_RELEASE_DELTA = 3.0;
 const Y_RELEASE_DELTA = 1.2;
 // Delta (positive to negative) of release to FTS along z // Louis 2.9G
 // const Z_RELEASE_DELTA = 1.2;
@@ -44,6 +44,7 @@ class ShotCounterProcess {
     var mTimeOfLastShot = 0;
     var mTime = 0;
     var mTimeOfLastPause = 0;
+    var mKeepProcessingFindMax = false;
     
     // Return min of two values
     hidden function min(a, b) {
@@ -167,73 +168,89 @@ class ShotCounterProcess {
             if (mTime - mTimeOfLastShot < MIN_TIME_BTWN) {
                 // skip futher computation, save juice!
             }
-            // far enough in the future, process the signal
             else {
-                System.println("cur_acc_x: " + cur_acc_x);
-                // Movement has slowed, count off a pause
-                if((cur_acc_x < X_PAUSE_THR) && (cur_acc_x > -X_PAUSE_THR) &&
-                   (cur_acc_y < Y_PAUSE_THR) && (cur_acc_y > -Y_PAUSE_THR)) {
-                    mPauseCount++;
-                    mTimeOfLastPause = mTime;
-                    System.println("Pause at: " + mTime);
-                }
-                // Check shape, we've had a spike after long enough of a pause
-                else if (mPauseCount > PAUSE_PERIOD) {
-                    System.println("Long enough pause at: " + mTime);
-                    min_x = min(min_x, cur_acc_x);
-                    min_y = min(min_y, cur_acc_y);
-                    max_x = max(max_x, cur_acc_x);
-                    max_y = max(max_y, cur_acc_y);
-                    cur_x_delta = max_x - min_x;
-                    cur_y_delta = max_y - min_y;
-                    
-                    // Check if this is short enough time for a release
-                    if (mTime - mTimeOfLastPause < RELEASE_DURATION) {
-                        System.println("Short enough, cur_x_delta: " + cur_x_delta);
-                        // Shot detected?
-                        if (cur_x_delta > X_RELEASE_DELTA && cur_y_delta > Y_RELEASE_DELTA) {
-							// shot_magnitude = computeShotMagnitude();
-							System.println("Shot magnitude: " + cur_x_delta +", Time: " + mTime);
-						    mTimeOfLastShot = mTime;
-                            recordingDelegate.shotDetected(); 
-                            mPauseCount = 0;
-                            mShotCount++;
-                            min_x = 0;
-                            max_x= 0;
-                            min_y = 0;
-                            max_x = 0;
-                            cur_x_delta = 0;
-                            cur_y_delta = 0;
-						}
-                    }
-					// We've been spiking for too long, reset pause count
-					// TODO: extending past detection
+				// Shot just detected, but keep checking to see if the extent is wider
+				if (mKeepProcessingFindMax) {
+					if (cur_acc_x > max_x || cur_acc_x < min_x) {
+						min_x = min(min_x, cur_acc_x);
+						min_y = min(min_y, cur_acc_y);
+						max_x = max(max_x, cur_acc_x);
+						max_y = max(max_y, cur_acc_y);
+						cur_x_delta = max_x - min_x;
+						cur_y_delta = max_y - min_y;
+					}
+					// Found the extent, record shot magnitude and clear values
 					else {
-                        mPauseCount = 0; 
-                        min_x = 0;
-                        max_x = 0;
-                        min_y = 0;
-                        max_y = 0;
-                        cur_x_delta = 0;
-                        cur_y_delta = 0;
+					    System.println("Shot magnitude: " + cur_x_delta +", Time: " + mTime);
+						mTimeOfLastShot = mTime;
+						recordingDelegate.shotDetected(); 
+						mPauseCount = 0;
+						mShotCount++;
+						min_x = 0;
+						max_x= 0;
+						min_y = 0;
+						max_x = 0;
+						cur_x_delta = 0;
+						cur_y_delta = 0;
+						mKeepProcessingFindMax = false;
+					}
 
-                    }
-                }
-                // Movement before we've paused long enough, need to start the counter over
-                else {
-                    mPauseCount = 0;
-                    min_x = 0;
-                    max_x = 0;
-                    min_y = 0;
-                    max_y = 0;
-                    cur_x_delta = 0;
-                    cur_y_delta = 0;
+				}
+				// far enough in the future, process the signal
+				else {
+					//System.println("cur_acc_x: " + cur_acc_x);
+					// Movement has slowed, count off a pause
+					if((cur_acc_x < X_PAUSE_THR) && (cur_acc_x > -X_PAUSE_THR) &&
+					   (cur_acc_y < Y_PAUSE_THR) && (cur_acc_y > -Y_PAUSE_THR)) {
+						mPauseCount++;
+						mTimeOfLastPause = mTime;
+						//System.println("Pause at: " + mTime);
+					}
+					// Check shape, we've had a spike after long enough of a pause
+					else if (mPauseCount > PAUSE_PERIOD) {
+						//System.println("Long enough pause at: " + mTime);
+						min_x = min(min_x, cur_acc_x);
+						min_y = min(min_y, cur_acc_y);
+						max_x = max(max_x, cur_acc_x);
+						max_y = max(max_y, cur_acc_y);
+						cur_x_delta = max_x - min_x;
+						cur_y_delta = max_y - min_y;
+						
+						// Check if this is short enough time for a release
+						if (mTime - mTimeOfLastPause < RELEASE_DURATION) {
+							//System.println("Short enough, cur_x_delta: " + cur_x_delta);
+							// Shot detected?
+							if (cur_x_delta > X_RELEASE_DELTA && cur_y_delta > Y_RELEASE_DELTA) {
+								mKeepProcessingFindMax = true;
+							}
+						}
+						// We've been spiking for too long, reset pause count
+						// TODO: extending past detection
+						else {
+							mPauseCount = 0; 
+							min_x = 0;
+							max_x = 0;
+							min_y = 0;
+							max_y = 0;
+							cur_x_delta = 0;
+							cur_y_delta = 0;
 
-                }
+						}
+					}
+					// Movement before we've paused long enough, need to start the counter over
+					else {
+						mPauseCount = 0;
+						min_x = 0;
+						max_x = 0;
+						min_y = 0;
+						max_y = 0;
+						cur_x_delta = 0;
+						cur_y_delta = 0;
+					}
+				}
             }
             // Increment time (by sample period) 
             mTime++; 
-
         }
         Ui.requestUpdate();
     }
