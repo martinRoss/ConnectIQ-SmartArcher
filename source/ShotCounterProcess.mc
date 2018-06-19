@@ -9,33 +9,26 @@ using Toybox.System as System;
 const SAMPLE_RATE = 25;
 // Sensor listener period
 const LISTENER_PERIOD = 1;
-// Pause period, samples 600 ms
-const PAUSE_PERIOD = 0.6 * SAMPLE_RATE;
+// Pause period, samples 500 ms
+const PAUSE_PERIOD = 0.5 * SAMPLE_RATE;
 // Pause threshold
 const X_PAUSE_THR = 0.5;
 const Y_PAUSE_THR = 0.75;
 // Min time between shots, in samples
 const MIN_TIME_BTWN = 4 * SAMPLE_RATE;
 // Delta (negative to positive) of release to FTS // Louis 7.5G
-const X_RELEASE_DELTA = 3.0;
+const X_RELEASE_DELTA = 2.75;
 const Y_RELEASE_DELTA = 1.2;
 // Delta (positive to negative) of release to FTS along z // Louis 2.9G
 // const Z_RELEASE_DELTA = 1.2;
 // Release duration, 0.5 seconds
 const RELEASE_DURATION = 0.5 * SAMPLE_RATE;
 
-
-// Current extents within release time window
-var min_x = 0;
-var min_y = 0;
-var max_x = 0;
-var max_y = 0;
-
 // Shot counter class
 class ShotCounterProcess {
-    var mX = [0];
-    var mY = [0];
-    var mZ = [0];
+    var mX = [0]; // Current array of x samples set during last acc callback (per period)
+    var mY = [0]; // Current array of y samples set during last acc callback (per period)
+    var mZ = [0]; // Current array of z samples set during last acc callback (per period)
     var mFilter;
     var mShotCount = 0;
     var mLogger;
@@ -44,7 +37,18 @@ class ShotCounterProcess {
     var mTimeOfLastShot = 0;
     var mTime = 0;
     var mTimeOfLastPause = 0;
-    var mKeepProcessingFindMax = false;
+    var mKeepProcessingFindMax = false; // There's big enough of a spike but we want to keep processing to see if the spike extends
+	var mMinX = 0;
+	var mMinY = 0;
+	var mMaxX = 0;
+	var mMaxY = 0;
+    var mCurAccX = 0;
+	var mCurAccY = 0;
+	var mCurAccZ = 0;
+	var mCurXDelta = 0;
+	var mCurYDelta = 0;
+	var mShotMagnitude = 0; // Shot magnitude of the last detected shot
+ 
     
     // Return min of two values
     hidden function min(a, b) {
@@ -145,24 +149,28 @@ class ShotCounterProcess {
         return mag;
     }
     
+    // Rests pause count, min, max and deltas
+    function resetExtentValues() {
+        mMinX = 0;
+		mMaxX= 0;
+		mMinY = 0;
+		mMaxX = 0;
+		mCurXDelta = 0;
+		mCurYDelta = 0; 
+    }
+    
     // Process new accel data
     function onAccelData() {
-        var cur_acc_x = 0;
-        var cur_acc_y = 0;
-        var cur_acc_z = 0;
-        var cur_x_delta = 0;
-        var cur_y_delta = 0;
-        var shot_magnitude = 0;
-        
+       
         // Process paused
         if (!mActive) { return; }
         
 
         for(var i = 0; i < mX.size(); ++i) {
             
-            cur_acc_x = mX[i];
-            cur_acc_y = mY[i];
-            cur_acc_z = mZ[i];
+            mCurAccX = mX[i];
+            mCurAccY = mY[i];
+            mCurAccZ = mZ[i];
           
             // Skip if time not far enough ahead from last shot
             if (mTime - mTimeOfLastShot < MIN_TIME_BTWN) {
@@ -171,37 +179,32 @@ class ShotCounterProcess {
             else {
 				// Shot just detected, but keep checking to see if the extent is wider
 				if (mKeepProcessingFindMax) {
-					if (cur_acc_x > max_x || cur_acc_x < min_x) {
-						min_x = min(min_x, cur_acc_x);
-						min_y = min(min_y, cur_acc_y);
-						max_x = max(max_x, cur_acc_x);
-						max_y = max(max_y, cur_acc_y);
-						cur_x_delta = max_x - min_x;
-						cur_y_delta = max_y - min_y;
+					if (mCurAccX > mMaxX || mCurAccX < mMinX) {
+						mMinX = min(mMinX, mCurAccX);
+						mMinY = min(mMinY, mCurAccY);
+						mMaxX = max(mMaxX, mCurAccX);
+						mMaxY = max(mMaxY, mCurAccY);
+						mCurXDelta = mMaxX - mMinX;
+						mCurYDelta = mMaxY - mMinY;
 					}
 					// Found the extent, record shot magnitude and clear values
 					else {
-					    System.println("Shot magnitude: " + cur_x_delta +", Time: " + mTime);
+					    System.println("Shot magnitude: " + mCurXDelta +", Time: " + mTime);
 						mTimeOfLastShot = mTime;
 						recordingDelegate.shotDetected(); 
 						mPauseCount = 0;
-						mShotCount++;
-						min_x = 0;
-						max_x= 0;
-						min_y = 0;
-						max_x = 0;
-						cur_x_delta = 0;
-						cur_y_delta = 0;
+						mShotCount++;	
 						mKeepProcessingFindMax = false;
+						resetExtentValues();
 					}
 
 				}
 				// far enough in the future, process the signal
 				else {
-					//System.println("cur_acc_x: " + cur_acc_x);
+					//System.println("mCurAccX: " + mCurAccX);
 					// Movement has slowed, count off a pause
-					if((cur_acc_x < X_PAUSE_THR) && (cur_acc_x > -X_PAUSE_THR) &&
-					   (cur_acc_y < Y_PAUSE_THR) && (cur_acc_y > -Y_PAUSE_THR)) {
+					if((mCurAccX < X_PAUSE_THR) && (mCurAccX > -X_PAUSE_THR) &&
+					   (mCurAccY < Y_PAUSE_THR) && (mCurAccY > -Y_PAUSE_THR)) {
 						mPauseCount++;
 						mTimeOfLastPause = mTime;
 						//System.println("Pause at: " + mTime);
@@ -209,18 +212,18 @@ class ShotCounterProcess {
 					// Check shape, we've had a spike after long enough of a pause
 					else if (mPauseCount > PAUSE_PERIOD) {
 						//System.println("Long enough pause at: " + mTime);
-						min_x = min(min_x, cur_acc_x);
-						min_y = min(min_y, cur_acc_y);
-						max_x = max(max_x, cur_acc_x);
-						max_y = max(max_y, cur_acc_y);
-						cur_x_delta = max_x - min_x;
-						cur_y_delta = max_y - min_y;
+						mMinX = min(mMinX, mCurAccX);
+						mMinY = min(mMinY, mCurAccY);
+						mMaxX = max(mMaxX, mCurAccX);
+						mMaxY = max(mMaxY, mCurAccY);
+						mCurXDelta = mMaxX - mMinX;
+						mCurYDelta = mMaxY - mMinY;
 						
 						// Check if this is short enough time for a release
 						if (mTime - mTimeOfLastPause < RELEASE_DURATION) {
-							//System.println("Short enough, cur_x_delta: " + cur_x_delta);
+							//System.println("Short enough, mCurXDelta: " + mCurXDelta);
 							// Shot detected?
-							if (cur_x_delta > X_RELEASE_DELTA && cur_y_delta > Y_RELEASE_DELTA) {
+							if (mCurXDelta > X_RELEASE_DELTA && mCurYDelta > Y_RELEASE_DELTA) {
 								mKeepProcessingFindMax = true;
 							}
 						}
@@ -228,24 +231,13 @@ class ShotCounterProcess {
 						// TODO: extending past detection
 						else {
 							mPauseCount = 0; 
-							min_x = 0;
-							max_x = 0;
-							min_y = 0;
-							max_y = 0;
-							cur_x_delta = 0;
-							cur_y_delta = 0;
-
+						    resetExtentValues();	
 						}
 					}
 					// Movement before we've paused long enough, need to start the counter over
 					else {
 						mPauseCount = 0;
-						min_x = 0;
-						max_x = 0;
-						min_y = 0;
-						max_y = 0;
-						cur_x_delta = 0;
-						cur_y_delta = 0;
+					    resetExtentValues();	
 					}
 				}
             }
