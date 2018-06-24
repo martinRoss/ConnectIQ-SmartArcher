@@ -10,15 +10,17 @@ const SAMPLE_RATE = 25;
 // Sensor listener period
 const LISTENER_PERIOD = 1;
 // Pause period, samples 500 ms
-const PAUSE_PERIOD = 0.5 * SAMPLE_RATE;
+const PAUSE_PERIOD = 0.4 * SAMPLE_RATE;
 // Pause threshold
 const X_PAUSE_THR = 0.5;
 const Y_PAUSE_THR = 0.75;
 // Min time between shots, in samples
 const MIN_TIME_BTWN = 4 * SAMPLE_RATE;
 // Delta (negative to positive) of release to FTS // Louis 7.5G
-const X_RELEASE_DELTA = 2.75;
+const X_RELEASE_DELTA = 2.5;
 const Y_RELEASE_DELTA = 1.2;
+// Both positive and negative x must go past this threshold
+const X_THR = 1.5;
 // Delta (positive to negative) of release to FTS along z // Louis 2.9G
 // const Z_RELEASE_DELTA = 1.2;
 // Release duration, 0.5 seconds
@@ -223,7 +225,8 @@ class ShotCounterProcess {
 						if (mTime - mTimeOfLastPause < RELEASE_DURATION) {
 							//System.println("Short enough, mCurXDelta: " + mCurXDelta);
 							// Shot detected?
-							if (mCurXDelta > X_RELEASE_DELTA && mCurYDelta > Y_RELEASE_DELTA) {
+							if ((mCurXDelta > X_RELEASE_DELTA) && (mCurYDelta > Y_RELEASE_DELTA) &&
+					            (mMaxX > X_THR) && (mMinX < -X_THR)) {
 								mKeepProcessingFindMax = true;
 							}
 						}
