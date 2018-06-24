@@ -1,6 +1,7 @@
 <layout id="MainLayout">
-     <label id="id_shot_count_label" text="@Strings.count_label" x="center" y="dc.getHeight() / 5" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER" font="Gfx.FONT_XTINY" />
-     <label id="id_shot_count" x="center" y="dc.getHeight() / 5 + 52 " color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER" font="Gfx.FONT_NUMBER_HOT" />
-     <label id="id_duration_label" text="@Strings.duration_label" x="center" y="dc.getHeight() * 0.65" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER" font="Gfx.FONT_XTINY" />
-     <label id="id_duration" x="center" y="dc.getHeight() * 0.65 + 38" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER" font="Gfx.FONT_LARGE" />
+     <label id="id_shot_count_label" text="@Strings.count_label" x="center" y="dc.getHeight() / 6" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER" font="Gfx.FONT_XTINY" />
+     <label id="id_shot_count" x="center" y="dc.getHeight() / 6 + 52 " color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER" font="Gfx.FONT_NUMBER_HOT" />
+     <label id="id_duration_label" text="@Strings.duration_label" x="center" y="dc.getHeight() * 0.6" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER" font="Gfx.FONT_XTINY" />
+     <label id="id_duration" x="center" y="dc.getHeight() * 0.6 + 38" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER" font="Gfx.FONT_LARGE" />
+     <label id="id_shot_magnitude" x="center" y="dc.getHeight() * 0.9" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER" font="Gfx.FONT_XTINY" />
 </layout>

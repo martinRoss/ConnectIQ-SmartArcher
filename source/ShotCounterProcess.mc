@@ -50,6 +50,7 @@ class ShotCounterProcess {
 	var mCurXDelta = 0;
 	var mCurYDelta = 0;
 	var mShotMagnitude = 0; // Shot magnitude of the last detected shot
+	var mShotMetrics = new [0]; 
  
     
     // Return min of two values
@@ -137,6 +138,10 @@ class ShotCounterProcess {
         return mLogger.getStats().samplePeriod;
     }
     
+    function getLastShotMetric() {
+        return mShotMetrics[mShotMetrics.size() - 1];
+    }
+    
     // Compute custom shot magnitude score
     // @param {array} x_arr
     // @param {array} y_arr
@@ -197,6 +202,7 @@ class ShotCounterProcess {
 						mPauseCount = 0;
 						mShotCount++;	
 						mKeepProcessingFindMax = false;
+						mShotMetrics.add(new ShotMetric(mMaxX, mMinX));
 						resetExtentValues();
 					}
 

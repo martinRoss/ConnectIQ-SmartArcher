@@ -5,6 +5,7 @@ class ArcheryActivityView extends Ui.View {
 
     var mCountDrawable;
     var mDurationDrawable;
+    var mMagnitudeDrawable;
 
     function initialize() {
         View.initialize();
@@ -15,7 +16,7 @@ class ArcheryActivityView extends Ui.View {
         setLayout(Rez.Layouts.MainLayout(dc));
         mCountDrawable = View.findDrawableById("id_shot_count");
         mDurationDrawable = View.findDrawableById("id_duration");
-        
+        mMagnitudeDrawable = View.findDrawableById("id_shot_magnitude"); 
         setDefaultStrings();
     }
     
@@ -23,6 +24,7 @@ class ArcheryActivityView extends Ui.View {
     function setDefaultStrings() {
         mCountDrawable.setText("--");
         mDurationDrawable.setText("--:--");
+        mMagnitudeDrawable.setText("-.-");
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -36,18 +38,25 @@ class ArcheryActivityView extends Ui.View {
         var activityInfo;
         var minutes = Math.floor($.activitySeconds / 60);
         var modSeconds = $.activitySeconds % 60;
-        
-        // Add leading 0
+        var count;
+        var magnitude;
+                // Add leading 0
         if (modSeconds < 10) {
             modSeconds = "0" + modSeconds;
         }
         // Set the count 
         if ($.shotCounter != null && $.shotCounter.getCount() > 0) {
-            mCountDrawable.setText($.shotCounter.getCount().toString());
+            count = $.shotCounter.getCount();
+            magnitude = $.shotCounter.getLastShotMetric().getMaxX();
+            mCountDrawable.setText(count.toString());
+            mMagnitudeDrawable.setText(magnitude.format("%u1.1"));
         }
         // Set the timer
         mDurationDrawable.setText(minutes + ":" + modSeconds);
         // Call the parent onUpdate function to redraw the layout
+        
+        // Set the magnitude
+        
         View.onUpdate(dc);
     }
 
