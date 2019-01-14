@@ -1,3 +1,5 @@
+__Not currently working on this project. If someone wants to collaborate, please send a message!__
+
 # ConnectIQ-SmartArcher
 
 SmartArcher is a Garmin ConnectIQ built for archers. If worn on the string hand wrist, SmartArcher will detect when you release a shot and to what magnitude. Intended as a feedback training tool, this application shows your shot variation over time. By keeping track of your release intensities, SmartArcher shows your variation above and below your average.
